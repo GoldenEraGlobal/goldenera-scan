@@ -12,7 +12,6 @@ import {
     Fingerprint,
     User,
     Coins,
-    HardDrive,
     ArrowLeft,
     FileText,
     Shield,
@@ -79,16 +78,9 @@ export function BlockOverview({ hash }: BlockOverviewProps) {
                         </span>
                     </DetailItem>
 
-                    {/* Size */}
-                    {block?.size != null && (
-                        <DetailItem icon={HardDrive} label={m.block_detail_size()} loading={blockLoading}>
-                            <span className="font-mono">{formatNum(block.size)} bytes</span>
-                        </DetailItem>
-                    )}
-
                     {/* Difficulty */}
                     <DetailItem icon={Shield} label={m.block_detail_difficulty()} loading={blockLoading}>
-                        <span className="font-mono">{block?.difficulty ?? 'N/A'}</span>
+                        <span className="font-mono">{formatNum(block?.difficulty)}</span>
                     </DetailItem>
 
                     {/* Nonce */}
