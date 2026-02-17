@@ -54,6 +54,7 @@ networks:
 
 Create a `.env` file with your node connection details:
 
+
 ```dotenv
 # Node Connection
 NODE_API_URL="https://your-node-api.example.com"
