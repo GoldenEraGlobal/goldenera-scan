@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "webhook": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["BLOCKCHAIN", "EXPLORER"] },
+        "label": { "type": "string" },
+        "description": { "type": "string" },
+        "url": { "type": "string" },
+        "enabled": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "createdByApiKeyId": { "type": "integer", "format": "int64" },
+        "queryParams": { "type": "object", "additionalProperties": {} },
+        "headers": { "type": "object", "additionalProperties": {} }
+      },
+      "x-readme-ref-name": "WebhookDtoV1"
+    },
+    "secretKey": { "type": "string" }
+  },
+  "x-readme-ref-name": "CreatedWebhookDtoV1"
+}

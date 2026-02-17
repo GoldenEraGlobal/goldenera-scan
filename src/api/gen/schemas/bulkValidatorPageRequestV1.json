@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "pageNumber": { "type": "integer", "format": "int32" },
+    "pageSize": { "type": "integer", "format": "int32" },
+    "direction": { "type": "string", "enum": ["ASC", "DESC"] },
+    "addresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "originTxHash": { "type": "string" },
+    "createdAtBlockHeightFrom": { "type": "integer", "format": "int64" },
+    "createdAtBlockHeightTo": { "type": "integer", "format": "int64" },
+    "createdAtTimestampFrom": { "type": "string", "format": "date-time" },
+    "createdAtTimestampTo": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "BulkValidatorPageRequestV1"
+}

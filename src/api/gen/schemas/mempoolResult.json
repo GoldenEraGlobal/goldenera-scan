@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "QUEUED",
+        "STALE",
+        "REJECTED_FEE",
+        "REJECTED_RBF",
+        "REJECTED_STATE",
+        "REJECTED_DUPLICATE",
+        "REJECTED_NONCE_TOO_FAR_FUTURE",
+        "REJECTED_MEMPOOL_FULL",
+        "REJECTED_OTHER"
+      ]
+    },
+    "message": { "type": "string" }
+  },
+  "x-readme-ref-name": "MempoolResult"
+}

@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string", "enum": ["V1"] },
+          "address": { "type": "string" },
+          "name": { "type": "string" },
+          "smallestUnitName": { "type": "string" },
+          "numberOfDecimals": { "type": "integer", "format": "int32" },
+          "websiteUrl": { "type": "string" },
+          "logoUrl": { "type": "string" },
+          "maxSupply": { "type": "string" },
+          "userBurnable": { "type": "boolean" },
+          "originTxHash": { "type": "string" },
+          "updatedByTxHash": { "type": "string" },
+          "totalSupply": { "type": "string" },
+          "createdAtBlockHeight": { "type": "integer", "format": "int64" },
+          "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
+          "createdAtTimestamp": { "type": "string", "format": "date-time" },
+          "updatedAtTimestamp": { "type": "string", "format": "date-time" }
+        },
+        "x-readme-ref-name": "TokenDtoV1"
+      }
+    },
+    "totalPages": { "type": "integer", "format": "int32" },
+    "totalElements": { "type": "integer", "format": "int64" }
+  },
+  "x-readme-ref-name": "TokenDtoV1_Page"
+}

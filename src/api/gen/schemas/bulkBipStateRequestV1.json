@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "bipHashes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  },
+  "x-readme-ref-name": "BulkBipStateRequestV1"
+}

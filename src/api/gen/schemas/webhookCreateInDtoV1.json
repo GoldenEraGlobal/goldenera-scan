@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "url": { "type": "string" },
+    "type": { "type": "string", "enum": ["BLOCKCHAIN", "EXPLORER"] },
+    "queryParams": { "type": "object", "additionalProperties": {} },
+    "headers": { "type": "object", "additionalProperties": {} }
+  },
+  "x-readme-ref-name": "WebhookCreateInDtoV1"
+}

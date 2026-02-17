@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "pageNumber": { "type": "integer", "format": "int32" },
+    "pageSize": { "type": "integer", "format": "int32" },
+    "direction": { "type": "string", "enum": ["ASC", "DESC"] },
+    "addresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "blockHeight": { "type": "integer", "format": "int64" },
+    "timestampFrom": { "type": "string", "format": "date-time" },
+    "timestampTo": { "type": "string", "format": "date-time" },
+    "type": {
+      "type": "string",
+      "enum": ["TRANSFER", "BIP_CREATE", "BIP_VOTE"]
+    },
+    "blockHash": { "type": "string" },
+    "senders": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "recipients": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "tokenAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "referenceHash": { "type": "string" }
+  },
+  "x-readme-ref-name": "BulkTxPageRequestV1"
+}

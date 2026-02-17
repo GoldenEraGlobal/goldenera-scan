@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "pageNumber": { "type": "integer", "format": "int32" },
+    "pageSize": { "type": "integer", "format": "int32" },
+    "direction": { "type": "string", "enum": ["ASC", "DESC"] },
+    "addresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "blockHeight": { "type": "integer", "format": "int64" },
+    "timestampFrom": { "type": "string", "format": "date-time" },
+    "timestampTo": { "type": "string", "format": "date-time" },
+    "type": {
+      "type": "string",
+      "enum": ["TRANSFER", "BLOCK_FEES", "BLOCK_REWARD", "MINT", "BURN"]
+    },
+    "blockHash": { "type": "string" },
+    "txHash": { "type": "string" },
+    "fromAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "toAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "tokenAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  },
+  "x-readme-ref-name": "BulkTransferPageRequestV1"
+}

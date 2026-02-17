@@ -1,0 +1,5 @@
+{
+  "type": "object",
+  "properties": { "enabled": { "type": "boolean" } },
+  "x-readme-ref-name": "ApiKeySetEnabledInDtoV1"
+}

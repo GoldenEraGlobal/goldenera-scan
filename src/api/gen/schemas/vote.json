@@ -1,0 +1,43 @@
+{
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Transaction payload",
+      "discriminator": {
+        "propertyName": "payloadType",
+        "mapping": {
+          "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+          "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+          "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+          "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+          "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+          "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+          "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+          "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+          "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+          "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+          "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+          "BIP_VOTE": "#/components/schemas/Vote"
+        }
+      },
+      "properties": {
+        "payloadType": {
+          "type": "string",
+          "description": "Payload type discriminator",
+          "example": "BIP_ADDRESS_ALIAS_ADD"
+        }
+      },
+      "required": ["payloadType"],
+      "x-readme-ref-name": "TxPayloadDtoV1"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["DISAPPROVAL", "APPROVAL"] }
+      }
+    }
+  ],
+  "description": "BIP vote payload",
+  "required": ["payloadType"],
+  "x-readme-ref-name": "Vote"
+}

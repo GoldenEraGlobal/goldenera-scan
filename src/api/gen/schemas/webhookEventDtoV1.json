@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["NEW_BLOCK", "ADDRESS_ACTIVITY", "REORG"]
+    },
+    "addressFilter": { "type": "string" },
+    "tokenAddressFilter": { "type": "string" }
+  },
+  "x-readme-ref-name": "WebhookEventDtoV1"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "enum": ["V1"] },
+    "nonce": { "type": "integer", "format": "int64" },
+    "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
+    "updatedAtTimestamp": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "AccountNonceStateDtoV1"
+}

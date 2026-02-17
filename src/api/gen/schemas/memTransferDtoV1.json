@@ -1,0 +1,580 @@
+{
+  "type": "object",
+  "properties": {
+    "hash": { "type": "string" },
+    "addedAt": { "type": "string", "format": "date-time" },
+    "transferType": {
+      "type": "string",
+      "enum": ["TRANSFER", "BLOCK_FEES", "BLOCK_REWARD", "MINT", "BURN"]
+    },
+    "from": { "type": "string" },
+    "to": { "type": "string" },
+    "tokenAddress": { "type": "string" },
+    "amount": { "type": "string" },
+    "txType": {
+      "type": "string",
+      "enum": ["TRANSFER", "BIP_CREATE", "BIP_VOTE"]
+    },
+    "txTimestamp": { "type": "string", "format": "date-time" },
+    "network": { "type": "string", "enum": ["MAINNET", "TESTNET"] },
+    "version": { "type": "string", "enum": ["V1"] },
+    "fee": { "type": "string" },
+    "nonce": { "type": "integer", "format": "int64" },
+    "size": { "type": "integer", "format": "int32" },
+    "signature": { "type": "string" },
+    "referenceHash": { "type": "string" },
+    "message": { "type": "string" },
+    "payloadType": {
+      "type": "string",
+      "enum": [
+        "BIP_ADDRESS_ALIAS_ADD",
+        "BIP_ADDRESS_ALIAS_REMOVE",
+        "BIP_AUTHORITY_ADD",
+        "BIP_AUTHORITY_REMOVE",
+        "BIP_NETWORK_PARAMS_SET",
+        "BIP_TOKEN_BURN",
+        "BIP_TOKEN_CREATE",
+        "BIP_TOKEN_MINT",
+        "BIP_TOKEN_UPDATE",
+        "BIP_VOTE",
+        "BIP_VALIDATOR_ADD",
+        "BIP_VALIDATOR_REMOVE"
+      ]
+    },
+    "payload": {
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "address": { "type": "string" },
+                "alias": { "type": "string" }
+              }
+            }
+          ],
+          "description": "Add address alias payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "AddressAliasAdd"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": { "alias": { "type": "string" } }
+            }
+          ],
+          "description": "Remove address alias payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "AddressAliasRemove"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": { "address": { "type": "string" } }
+            }
+          ],
+          "description": "Add authority payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "AuthorityAdd"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": { "address": { "type": "string" } }
+            }
+          ],
+          "description": "Remove authority payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "AuthorityRemove"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "blockReward": { "type": "string" },
+                "blockRewardPoolAddress": { "type": "string" },
+                "targetMiningTimeMs": { "type": "integer", "format": "int64" },
+                "asertHalfLifeBlocks": { "type": "integer", "format": "int64" },
+                "minDifficulty": { "type": "string" },
+                "minTxBaseFee": { "type": "string" },
+                "minTxByteFee": { "type": "string" }
+              }
+            }
+          ],
+          "description": "Set network parameters payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "NetworkParamsSet"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tokenAddress": { "type": "string" },
+                "sender": { "type": "string" },
+                "amount": { "type": "string" }
+              }
+            }
+          ],
+          "description": "Burn tokens payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "TokenBurn"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "smallestUnitName": { "type": "string" },
+                "numberOfDecimals": { "type": "integer", "format": "int32" },
+                "websiteUrl": { "type": "string" },
+                "logoUrl": { "type": "string" },
+                "maxSupply": { "type": "string" },
+                "userBurnable": { "type": "boolean" }
+              }
+            }
+          ],
+          "description": "Create token payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "TokenCreate"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tokenAddress": { "type": "string" },
+                "recipient": { "type": "string" },
+                "amount": { "type": "string" }
+              }
+            }
+          ],
+          "description": "Mint tokens payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "TokenMint"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "tokenAddress": { "type": "string" },
+                "name": { "type": "string" },
+                "smallestUnitName": { "type": "string" },
+                "websiteUrl": { "type": "string" },
+                "logoUrl": { "type": "string" }
+              }
+            }
+          ],
+          "description": "Update token payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "TokenUpdate"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": { "address": { "type": "string" } }
+            }
+          ],
+          "description": "Add validator payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "ValidatorAdd"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": { "address": { "type": "string" } }
+            }
+          ],
+          "description": "Remove validator payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "ValidatorRemove"
+        },
+        {
+          "allOf": [
+            {
+              "type": "object",
+              "description": "Transaction payload",
+              "discriminator": {
+                "propertyName": "payloadType",
+                "mapping": {
+                  "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                  "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                  "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                  "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                  "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                  "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                  "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                  "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                  "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                  "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                  "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                  "BIP_VOTE": "#/components/schemas/Vote"
+                }
+              },
+              "properties": {
+                "payloadType": {
+                  "type": "string",
+                  "description": "Payload type discriminator",
+                  "example": "BIP_ADDRESS_ALIAS_ADD"
+                }
+              },
+              "required": ["payloadType"],
+              "x-readme-ref-name": "TxPayloadDtoV1"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["DISAPPROVAL", "APPROVAL"]
+                }
+              }
+            }
+          ],
+          "description": "BIP vote payload",
+          "required": ["payloadType"],
+          "x-readme-ref-name": "Vote"
+        }
+      ]
+    }
+  },
+  "x-readme-ref-name": "MemTransferDtoV1"
+}

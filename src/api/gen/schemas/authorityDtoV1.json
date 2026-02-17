@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "enum": ["V1"] },
+    "address": { "type": "string" },
+    "originTxHash": { "type": "string" },
+    "createdAtBlockHeight": { "type": "integer", "format": "int64" },
+    "createdAtTimestamp": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "AuthorityDtoV1"
+}

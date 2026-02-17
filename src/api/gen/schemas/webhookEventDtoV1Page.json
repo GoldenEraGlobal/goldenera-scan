@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["NEW_BLOCK", "ADDRESS_ACTIVITY", "REORG"]
+          },
+          "addressFilter": { "type": "string" },
+          "tokenAddressFilter": { "type": "string" }
+        },
+        "x-readme-ref-name": "WebhookEventDtoV1"
+      }
+    },
+    "totalPages": { "type": "integer", "format": "int32" },
+    "totalElements": { "type": "integer", "format": "int64" }
+  },
+  "x-readme-ref-name": "WebhookEventDtoV1_Page"
+}

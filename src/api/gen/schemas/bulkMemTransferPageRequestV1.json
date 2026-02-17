@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "pageNumber": { "type": "integer", "format": "int32" },
+    "pageSize": { "type": "integer", "format": "int32" },
+    "direction": { "type": "string", "enum": ["ASC", "DESC"] },
+    "addresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "addedAtFrom": { "type": "string", "format": "date-time" },
+    "addedAtTo": { "type": "string", "format": "date-time" },
+    "transferType": {
+      "type": "string",
+      "enum": ["TRANSFER", "BLOCK_FEES", "BLOCK_REWARD", "MINT", "BURN"]
+    },
+    "txType": {
+      "type": "string",
+      "enum": ["TRANSFER", "BIP_CREATE", "BIP_VOTE"]
+    },
+    "fromAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "toAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "tokenAddresses": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "referenceHash": { "type": "string" }
+  },
+  "x-readme-ref-name": "BulkMemTransferPageRequestV1"
+}

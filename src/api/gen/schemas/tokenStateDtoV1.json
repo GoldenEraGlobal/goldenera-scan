@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "enum": ["V1"] },
+    "name": { "type": "string" },
+    "smallestUnitName": { "type": "string" },
+    "numberOfDecimals": { "type": "integer", "format": "int32" },
+    "websiteUrl": { "type": "string" },
+    "logoUrl": { "type": "string" },
+    "maxSupply": { "type": "string" },
+    "totalSupply": { "type": "string" },
+    "userBurnable": { "type": "boolean" },
+    "originTxHash": { "type": "string" },
+    "updatedByTxHash": { "type": "string" },
+    "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
+    "updatedAtTimestamp": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "TokenStateDtoV1"
+}

@@ -1,0 +1,55 @@
+{
+  "allOf": [
+    {
+      "type": "object",
+      "description": "Block event",
+      "discriminator": {
+        "propertyName": "type",
+        "mapping": {
+          "BLOCK_REWARD": "#/components/schemas/BlockRewardDto",
+          "FEES_COLLECTED": "#/components/schemas/FeesCollectedDto",
+          "TOKEN_CREATED": "#/components/schemas/TokenCreatedDto",
+          "TOKEN_UPDATED": "#/components/schemas/TokenUpdatedDto",
+          "TOKEN_MINTED": "#/components/schemas/TokenMintedDto",
+          "TOKEN_BURNED": "#/components/schemas/TokenBurnedDto",
+          "TOKEN_SUPPLY_UPDATED": "#/components/schemas/TokenSupplyUpdatedDto",
+          "AUTHORITY_ADDED": "#/components/schemas/AuthorityAddedDto",
+          "AUTHORITY_REMOVED": "#/components/schemas/AuthorityRemovedDto",
+          "VALIDATOR_ADDED": "#/components/schemas/ValidatorAddedDto",
+          "VALIDATOR_REMOVED": "#/components/schemas/ValidatorRemovedDto",
+          "NETWORK_PARAMS_CHANGED": "#/components/schemas/NetworkParamsChangedDto",
+          "NETWORK_PARAMS_UPDATED": "#/components/schemas/NetworkParamsUpdatedDto",
+          "ADDRESS_ALIAS_ADDED": "#/components/schemas/AddressAliasAddedDto",
+          "ADDRESS_ALIAS_REMOVED": "#/components/schemas/AddressAliasRemovedDto",
+          "BIP_STATE_CREATED": "#/components/schemas/BipStateCreatedDto",
+          "BIP_STATE_UPDATED": "#/components/schemas/BipStateUpdatedDto"
+        }
+      },
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type discriminator",
+          "example": "BLOCK_REWARD"
+        }
+      },
+      "required": ["type"],
+      "x-readme-ref-name": "BlockEventDtoV1"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "minerAddress": {
+          "type": "string",
+          "description": "Miner address who received the reward"
+        },
+        "rewardPoolAddress": {
+          "type": "string",
+          "description": "Reward pool address"
+        },
+        "amount": { "type": "string", "description": "Reward amount" }
+      }
+    }
+  ],
+  "required": ["type"],
+  "x-readme-ref-name": "BlockRewardDto"
+}

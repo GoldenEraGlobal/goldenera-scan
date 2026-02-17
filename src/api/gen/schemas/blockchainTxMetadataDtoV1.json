@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "hash": { "type": "string" },
+    "size": { "type": "integer", "format": "int32" },
+    "sender": { "type": "string" },
+    "index": { "type": "integer", "format": "int32" },
+    "blockHash": { "type": "string" },
+    "blockHeight": { "type": "integer", "format": "int64" },
+    "blockTimestamp": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "BlockchainTxMetadataDtoV1"
+}

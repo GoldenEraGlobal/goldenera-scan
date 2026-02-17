@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "slow": {
+      "type": "object",
+      "properties": {
+        "baseFee": { "type": "string" },
+        "feePerByte": { "type": "string" },
+        "totalForAverageTx": { "type": "string" }
+      },
+      "x-readme-ref-name": "FeeLevel"
+    },
+    "standard": {
+      "type": "object",
+      "properties": {
+        "baseFee": { "type": "string" },
+        "feePerByte": { "type": "string" },
+        "totalForAverageTx": { "type": "string" }
+      },
+      "x-readme-ref-name": "FeeLevel"
+    },
+    "fast": {
+      "type": "object",
+      "properties": {
+        "baseFee": { "type": "string" },
+        "feePerByte": { "type": "string" },
+        "totalForAverageTx": { "type": "string" }
+      },
+      "x-readme-ref-name": "FeeLevel"
+    },
+    "mempoolSize": { "type": "integer", "format": "int64" }
+  },
+  "x-readme-ref-name": "RecommendedFeesDtoV1"
+}

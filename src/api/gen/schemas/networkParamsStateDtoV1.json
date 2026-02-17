@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "enum": ["V1"] },
+    "blockReward": { "type": "string" },
+    "blockRewardPoolAddress": { "type": "string" },
+    "targetMiningTimeMs": { "type": "integer", "format": "int64" },
+    "asertHalfLifeBlocks": { "type": "integer", "format": "int64" },
+    "asertAnchorHeight": { "type": "integer", "format": "int64" },
+    "minDifficulty": { "type": "string" },
+    "minTxBaseFee": { "type": "string" },
+    "minTxByteFee": { "type": "string" },
+    "currentAuthorityCount": { "type": "integer", "format": "int64" },
+    "currentValidatorCount": { "type": "integer", "format": "int64" },
+    "updatedByTxHash": { "type": "string" },
+    "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
+    "updatedAtTimestamp": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "NetworkParamsStateDtoV1"
+}

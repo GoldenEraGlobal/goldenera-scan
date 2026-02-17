@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "hash": { "type": "string", "description": "Block hash" },
+    "size": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Block size in bytes"
+    },
+    "identity": {
+      "type": "string",
+      "description": "Block identity (miner address)"
+    },
+    "numOfTxs": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of transactions in the block"
+    }
+  },
+  "x-readme-ref-name": "BlockchainBlockHeaderMetadataDtoV1"
+}

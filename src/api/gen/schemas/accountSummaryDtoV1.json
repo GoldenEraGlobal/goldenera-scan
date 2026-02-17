@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "address": { "type": "string" },
+    "nativeBalance": { "type": "string" },
+    "nonce": { "type": "integer", "format": "int64" },
+    "nextNonce": { "type": "integer", "format": "int64" },
+    "pendingTxCount": { "type": "integer", "format": "int32" },
+    "tokenAddress": { "type": "string" },
+    "tokenBalance": { "type": "string" }
+  },
+  "x-readme-ref-name": "AccountSummaryDtoV1"
+}

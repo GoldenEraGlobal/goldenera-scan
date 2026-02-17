@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "baseFee": { "type": "string" },
+    "feePerByte": { "type": "string" },
+    "totalForAverageTx": { "type": "string" }
+  },
+  "x-readme-ref-name": "FeeLevel"
+}

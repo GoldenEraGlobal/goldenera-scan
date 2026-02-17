@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "READ_ACCOUNT",
+          "READ_ADDRESS_ALIAS",
+          "READ_AUTHORITY",
+          "READ_BIP_STATE",
+          "READ_BLOCK_HEADER",
+          "READ_NETWORK_PARAMS",
+          "READ_MEMPOOL_TX",
+          "READ_TOKEN",
+          "READ_TX",
+          "READ_WRITE_WEBHOOK",
+          "READ_NODE_METRICS",
+          "SUBMIT_MEMPOOL_TX",
+          "READ_VALIDATOR",
+          "READ_SEARCH"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "maxWebhooks": { "type": "integer", "format": "int64" },
+    "expiresAt": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "ApiKeyInDtoV1"
+}

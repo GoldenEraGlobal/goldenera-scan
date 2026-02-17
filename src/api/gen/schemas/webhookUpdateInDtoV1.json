@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "label": { "type": "string" },
+    "description": { "type": "string" },
+    "queryParams": { "type": "object", "additionalProperties": {} },
+    "headers": { "type": "object", "additionalProperties": {} }
+  },
+  "x-readme-ref-name": "WebhookUpdateInDtoV1"
+}

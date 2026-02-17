@@ -1,0 +1,75 @@
+.responsiveTable {
+    width: 100%;
+}
+
+.responsiveTable td .tdBefore {
+    display: none;
+}
+
+@media screen and (max-width: 64em) {
+    /*
+    Force table elements to not behave like tables anymore
+    Hide table headers (but not display: none;, for accessibility)
+  */
+
+    .responsiveTable,
+    .responsiveTable thead,
+    .responsiveTable tbody,
+    .responsiveTable th,
+    .responsiveTable td,
+    .responsiveTable tr {
+        display: block;
+    }
+
+    .responsiveTable thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .responsiveTable tbody tr {
+        padding: .25em;
+    }
+
+    .responsiveTable td.pivoted {
+        /* Behave like a "row" */
+        border: none !important;
+        position: relative;
+        padding-left: calc(50% + 10px) !important;
+        text-align: left !important;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+    }
+
+    .responsiveTable td .tdBefore {
+        /* Now like a table header */
+        position: absolute;
+        display: block;
+
+        /* Top/left values mimic padding */
+        left: 1rem;
+        width: calc(50% - 20px);
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        text-align: left !important;
+        font-weight: 600;
+    }
+
+    .responsiveTable td.pivoted.no-pivoted {
+        padding-left: 1rem !important;
+        text-align: center !important;
+        white-space: normal !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .responsiveTable td.pivoted.no-pivoted .tdBefore {
+        display: none !important;
+    }
+
+    /* Prevent unwanted horizontal scroll on mobile when pivoted */
+    [data-slot="table-container"] {
+        overflow-x: hidden !important;
+    }
+}

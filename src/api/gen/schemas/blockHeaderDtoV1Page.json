@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hash": { "type": "string" },
+          "version": { "type": "string", "enum": ["V1"] },
+          "height": { "type": "integer", "format": "int64" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "previousHash": { "type": "string" },
+          "txRootHash": { "type": "string" },
+          "stateRootHash": { "type": "string" },
+          "difficulty": { "type": "string" },
+          "coinbase": { "type": "string" },
+          "nonce": { "type": "integer", "format": "int64" },
+          "signature": { "type": "string" },
+          "size": { "type": "integer", "format": "int32" },
+          "cumulativeDifficulty": { "type": "string" },
+          "numberOfTxs": { "type": "integer", "format": "int32" },
+          "totalFees": { "type": "string" },
+          "blockReward": { "type": "string" },
+          "identity": { "type": "string" }
+        },
+        "x-readme-ref-name": "BlockHeaderDtoV1"
+      }
+    },
+    "totalPages": { "type": "integer", "format": "int32" },
+    "totalElements": { "type": "integer", "format": "int64" }
+  },
+  "x-readme-ref-name": "BlockHeaderDtoV1_Page"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string", "enum": ["V1"] },
+          "address": { "type": "string" },
+          "originTxHash": { "type": "string" },
+          "createdAtBlockHeight": { "type": "integer", "format": "int64" },
+          "createdAtTimestamp": { "type": "string", "format": "date-time" }
+        },
+        "x-readme-ref-name": "ValidatorDtoV1"
+      }
+    },
+    "totalPages": { "type": "integer", "format": "int32" },
+    "totalElements": { "type": "integer", "format": "int64" }
+  },
+  "x-readme-ref-name": "ValidatorDtoV1_Page"
+}
