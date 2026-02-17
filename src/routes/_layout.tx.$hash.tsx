@@ -26,15 +26,16 @@ export const Route = createFileRoute('/_layout/tx/$hash')({
 
     return {
       tx: data,
+      APP_NAME: context.APP_NAME
     }
   },
   component: TxDetailPage,
-  head: ({ params }) => ({
+  head: ({ params, loaderData }) => ({
     meta: [
-      { title: m.meta_title_tx_detail({ hash: params.hash, appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }) },
+      { title: m.meta_title_tx_detail({ hash: params.hash, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }) },
       {
         name: 'description',
-        content: m.meta_description_tx_detail({ hash: params.hash, appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }),
+        content: m.meta_description_tx_detail({ hash: params.hash, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }),
       },
     ],
   }),

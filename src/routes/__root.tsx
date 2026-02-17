@@ -10,11 +10,33 @@ import { NotFoundCard } from '@/components/not-found-card'
 import { PageSkeleton } from '@/components/page-skeleton'
 import { QueryClient } from '@tanstack/react-query'
 import { tokensQueryOptions } from '@/hooks/useTokens.js'
+import { createServerFn } from '@tanstack/react-start'
+
+export const getAppName = createServerFn().handler(async () => {
+  return process.env.APP_NAME
+})
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
+  APP_NAME: string
 }>()({
-  head: () => ({
+  shellComponent: RootDocument,
+  notFoundComponent: NotFoundCard,
+  pendingComponent: PageSkeleton,
+  beforeLoad: async () => {
+    const APP_NAME = (await getAppName()) || 'GoldenEra Scan'
+    return { APP_NAME }
+  },
+  loader: async ({ context }) => {
+    const data = await context.queryClient.ensureQueryData(
+      tokensQueryOptions(),
+    )
+    return {
+      tokens: data,
+      APP_NAME: context.APP_NAME,
+    }
+  },
+  head: (ctx) => ({
     meta: [
       {
         charSet: 'utf-8',
@@ -24,7 +46,7 @@ export const Route = createRootRouteWithContext<{
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: import.meta.env.VITE_APP_NAME || 'GE Explorer',
+        title: ctx.loaderData?.APP_NAME || 'GoldenEra Scan',
       },
       {
         name: 'msapplication-TileColor',
@@ -60,18 +82,6 @@ export const Route = createRootRouteWithContext<{
       { rel: 'manifest', href: '/manifest.json' },
     ],
   }),
-
-  shellComponent: RootDocument,
-  notFoundComponent: NotFoundCard,
-  pendingComponent: PageSkeleton,
-  loader: async ({ context }) => {
-    const data = await context.queryClient.ensureQueryData(
-      tokensQueryOptions(),
-    )
-    return {
-      tokens: data,
-    }
-  },
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {

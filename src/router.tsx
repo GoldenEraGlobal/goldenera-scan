@@ -8,7 +8,7 @@ import { queryClient } from './lib/react-query'
 export const getRouter = () => {
   const router = createRouter({
     routeTree,
-    context: { queryClient },
+    context: { queryClient, APP_NAME: 'GoldenEra Scan' },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     rewrite: {

@@ -17,13 +17,16 @@ export const Route = createFileRoute('/_layout/account/$address')({
     await context.queryClient.ensureQueryData(
       accountQueryOptions(params.address),
     )
+    return {
+      APP_NAME: context.APP_NAME,
+    }
   },
-  head: ({ params }) => ({
+  head: ({ params, loaderData }) => ({
     meta: [
-      { title: m.meta_title_address_detail({ address: params.address, appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }) },
+      { title: m.meta_title_address_detail({ address: params.address, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }) },
       {
         name: 'description',
-        content: m.meta_description_address_detail({ address: params.address, appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }),
+        content: m.meta_description_address_detail({ address: params.address, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }),
       },
     ],
   }),

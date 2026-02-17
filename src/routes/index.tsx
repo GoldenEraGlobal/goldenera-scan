@@ -15,7 +15,7 @@ import * as m from "@/paraglide/messages"
 export const Route = createFileRoute("/")({
   validateSearch: (search) => z.object({}).parse(search),
   loader: async ({ context }) => {
-    const { queryClient } = context
+    const { queryClient, APP_NAME } = context
 
     await Promise.all([
       queryClient.ensureQueryData(blocksQueryOptions({ page: 0, pageSize: 5 })),
@@ -23,11 +23,15 @@ export const Route = createFileRoute("/")({
       queryClient.ensureQueryData(mempoolTransactionsQueryOptions({ page: 0, pageSize: 5 })),
       queryClient.ensureQueryData(requestGlobalStatsQueryOptions()),
     ])
+
+    return {
+      APP_NAME
+    }
   },
   component: App,
-  head: () => ({
+  head: ({ loaderData }) => ({
     meta: [
-      { title: import.meta.env.VITE_APP_NAME || 'GE Explorer' },
+      { title: loaderData?.APP_NAME || 'GoldenEra Scan' },
       {
         name: 'description',
         content: m.meta_description_default(),

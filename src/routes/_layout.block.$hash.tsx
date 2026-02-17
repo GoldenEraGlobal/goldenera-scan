@@ -16,15 +16,16 @@ export const Route = createFileRoute('/_layout/block/$hash')({
     )
     return {
       block: data,
+      APP_NAME: context.APP_NAME
     }
   },
   component: BlockDetailPage,
-  head: ({ params }) => ({
+  head: ({ params, loaderData }) => ({
     meta: [
-      { title: m.meta_title_block_detail({ height: params.hash, appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }) },
+      { title: m.meta_title_block_detail({ height: params.hash, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }) },
       {
         name: 'description',
-        content: m.meta_description_block_detail({ height: params.hash, appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }),
+        content: m.meta_description_block_detail({ height: params.hash, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }),
       },
     ],
   })

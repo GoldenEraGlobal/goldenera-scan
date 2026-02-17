@@ -5,12 +5,19 @@ import * as m from "@/paraglide/messages"
 
 export const Route = createFileRoute('/_layout/mempool')({
     component: MempoolPage,
-    head: () => ({
+    loader: ({ context }) => {
+        const { APP_NAME } = context
+
+        return {
+            APP_NAME
+        }
+    },
+    head: ({ loaderData }) => ({
         meta: [
-            { title: m.meta_title_mempool({ appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }) },
+            { title: m.meta_title_mempool({ appName: loaderData?.APP_NAME || 'GoldenEra Scan' }) },
             {
                 name: 'description',
-                content: m.meta_description_mempool({ appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }),
+                content: m.meta_description_mempool({ appName: loaderData?.APP_NAME || 'GoldenEra Scan' }),
             },
         ],
     }),

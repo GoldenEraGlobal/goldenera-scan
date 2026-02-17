@@ -2,14 +2,13 @@ import { Menu, XIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import { Link } from "@tanstack/react-router";
+import { Link, useLoaderData } from "@tanstack/react-router";
 import { LanguageToggle } from "./language-toggle";
 import * as m from "@/paraglide/messages"
 
-const APP_NAME = import.meta.env.VITE_APP_NAME
-
 export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const APP_NAME = useLoaderData({ from: "__root__", select: (state) => state.APP_NAME || 'GoldenEra Scan' })
     return (
         <>
             <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">

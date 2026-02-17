@@ -61,7 +61,7 @@ NODE_API_URL="https://your-node-api.example.com"
 NODE_API_KEY="your_node_api_key"
 
 # App Configuration
-VITE_APP_NAME="GoldenEra Scan"
+APP_NAME="GoldenEra Scan"
 LISTEN_PORT=3000
 ```
 

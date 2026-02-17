@@ -5,12 +5,19 @@ import * as m from "@/paraglide/messages"
 
 export const Route = createFileRoute('/_layout/blocks')({
     component: BlocksPage,
-    head: () => ({
+    loader: ({ context }) => {
+        const { APP_NAME } = context
+
+        return {
+            APP_NAME
+        }
+    },
+    head: ({ loaderData }) => ({
         meta: [
-            { title: m.meta_title_blocks({ appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }) },
+            { title: m.meta_title_blocks({ appName: loaderData?.APP_NAME || 'GoldenEra Scan' }) },
             {
                 name: 'description',
-                content: m.meta_description_blocks({ appName: import.meta.env.VITE_APP_NAME || 'GE Explorer' }),
+                content: m.meta_description_blocks({ appName: loaderData?.APP_NAME || 'GoldenEra Scan' }),
             },
         ],
     }),

@@ -1,11 +1,11 @@
 import { SearchInput } from "./search-input";
-import { ClientOnly } from '@tanstack/react-router'
+import { ClientOnly, useLoaderData } from '@tanstack/react-router'
 import { Spinner } from "../ui/spinner";
 import * as m from "@/paraglide/messages"
 
-const APP_NAME = import.meta.env.VITE_APP_NAME || 'GE Explorer'
-
 export function HeroSearch() {
+    const APP_NAME = useLoaderData({ from: '__root__', select: (data) => data.APP_NAME })
+
     return (
         <section className="relative bg-slate-900 text-slate-50 py-24 px-4 md:px-8 overflow-hidden">
             {/* Abstract Background pattern */}
@@ -16,10 +16,10 @@ export function HeroSearch() {
 
             <div className="container mx-auto relative z-10 max-w-5xl flex flex-col items-center text-center">
                 <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-sky-300 to-indigo-400">
-                    {m.hero_title({ appName: APP_NAME })}
+                    {m.hero_title({ appName: APP_NAME || 'GoldenEra Scan' })}
                 </h1>
                 <p className="text-slate-300 text-lg md:text-xl mb-10 max-w-2xl leading-relaxed">
-                    {m.hero_subtitle({ appName: APP_NAME })}
+                    {m.hero_subtitle({ appName: APP_NAME || 'GoldenEra Scan' })}
                 </p>
 
                 {/* Search Input */}
