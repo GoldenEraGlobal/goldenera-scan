@@ -1,5 +1,6 @@
 
 import { useQuery } from '@tanstack/react-query'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { getClient } from '@/api/client'
@@ -16,7 +17,7 @@ export const getToken = createServerFn()
         try {
             return await apiV1TokenGetByAddress(data.address, { client: getClient() })
         } catch (e) {
-            return null
+            throw notFound()
         }
     })
 
@@ -28,8 +29,12 @@ export const tokenQueryOptions = (address: string) =>
 
 export interface UseTokenDetailProps {
     address: string
+    autoRefetch?: boolean
 }
 
-export function useTokenDetail({ address }: UseTokenDetailProps) {
-    return useQuery(tokenQueryOptions(address))
+export function useTokenDetail({ address, autoRefetch = false }: UseTokenDetailProps) {
+    return useQuery({
+        ...tokenQueryOptions(address),
+        refetchInterval: autoRefetch ? 10000 : false,
+    })
 }

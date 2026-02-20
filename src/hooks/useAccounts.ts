@@ -34,7 +34,7 @@ export const getAccounts = createServerFn()
                 totalElements: res.totalElements || 0,
             }
         } catch (e) {
-            return { list: [], totalPages: 1, totalElements: 0 }
+            throw new Error("Failed to fetch accounts")
         }
     })
 
@@ -43,9 +43,10 @@ export interface UseAccountsProps {
     pageSize?: number
     tokenAddress?: string
     direction?: 'ASC' | 'DESC'
+    autoRefetch?: boolean
 }
 
-export const accountsQueryOptions = (props: UseAccountsProps) => {
+export const accountsQueryOptions = (props: Omit<UseAccountsProps, 'autoRefetch'>) => {
     const { pageSize = 25, direction = 'DESC', tokenAddress = ZERO_ADDRESS } = props
     return queryOptions({
         queryKey: ['accounts', { ...props, pageSize, direction, tokenAddress }],
@@ -55,8 +56,9 @@ export const accountsQueryOptions = (props: UseAccountsProps) => {
 }
 
 export function useAccounts(props: UseAccountsProps) {
+    const { autoRefetch = false, ...queryProps } = props
     return useQuery({
-        ...accountsQueryOptions(props),
-        refetchInterval: 10000,
+        ...accountsQueryOptions(queryProps),
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

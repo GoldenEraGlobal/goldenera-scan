@@ -215,6 +215,9 @@
   "meta_description_transactions": "Посмотреть последние транзакции на {appName}",
   "not_found_title": "404 - Страница не найдена",
   "not_found_description": "К сожалению, запрашиваемая вами страница не существует. Возможно, она была перемещена или удалена.",
-  "not_found_back_home": "Вернуться на главную"
+  "not_found_back_home": "Вернуться на главную",
+  "error_card_title": "Что-то пошло не так",
+  "error_card_description": "Произошла непредвиденная ошибка при загрузке этой страницы.",
+  "error_card_retry": "Попробовать снова",
+  "error_card_home": "На главную"
 }
-

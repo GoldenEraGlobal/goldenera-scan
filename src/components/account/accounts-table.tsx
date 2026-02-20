@@ -84,6 +84,7 @@ export function AccountsTable({
         isLoading,
         refetch,
         isRefetching,
+        isPlaceholderData,
     } = useAccounts({
         page: pageIndex,
         pageSize,
@@ -180,7 +181,7 @@ export function AccountsTable({
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={(!addresses && isLoading) || isRefetching}
+                    isLoading={isLoading || isPlaceholderData}
                     rowCount={pagination.pageSize}
                     emptyIcon={<Users className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.addresses_empty()}

@@ -75,6 +75,7 @@ export function TokenHoldingsTable({
         isLoading: balancesLoading,
         refetch: refetchBalances,
         isRefetching: balancesRefetching,
+        isPlaceholderData,
     } = useTokenHoldings({
         address,
         page: pageIndex,
@@ -199,7 +200,7 @@ export function TokenHoldingsTable({
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={(!balances && balancesLoading) || balancesRefetching}
+                    isLoading={balancesLoading || isPlaceholderData}
                     rowCount={pagination.pageSize}
                     emptyIcon={<Coins className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.table_no_token_holdings()}

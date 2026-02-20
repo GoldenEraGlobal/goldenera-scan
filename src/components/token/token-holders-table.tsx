@@ -62,6 +62,7 @@ export function TokenHoldersTable({ tokenAddress, className, title }: TokenHolde
         isLoading,
         refetch,
         isRefetching,
+        isPlaceholderData,
     } = useTokenHolders({
         tokenAddress,
         page: pageIndex,
@@ -152,7 +153,7 @@ export function TokenHoldersTable({ tokenAddress, className, title }: TokenHolde
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={(!holders && isLoading) || isRefetching}
+                    isLoading={isLoading || isPlaceholderData}
                     rowCount={pagination.pageSize}
                     emptyIcon={<Users className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.token_holders_empty()}

@@ -1,5 +1,6 @@
 
 import { createServerFn } from '@tanstack/react-start'
+import { notFound } from '@tanstack/react-router'
 import { queryOptions, useQuery } from '@tanstack/react-query'
 import { z } from 'zod'
 import { getClient } from '@/api/client'
@@ -56,10 +57,10 @@ export const getTx = createServerFn()
                 return unified
             }
         } catch (e) {
-            // Both failed
+            throw notFound()
         }
 
-        return null
+        throw notFound()
     })
 
 export const transactionQueryOptions = (hash: string) =>
@@ -71,8 +72,12 @@ export const transactionQueryOptions = (hash: string) =>
 
 export interface UseTransactionProps {
     hash: string
+    autoRefetch?: boolean
 }
 
-export function useTransaction({ hash }: UseTransactionProps) {
-    return useQuery(transactionQueryOptions(hash))
+export function useTransaction({ hash, autoRefetch = false }: UseTransactionProps) {
+    return useQuery({
+        ...transactionQueryOptions(hash),
+        refetchInterval: autoRefetch ? 30000 : false,
+    })
 }

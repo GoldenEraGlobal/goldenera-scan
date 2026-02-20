@@ -23,11 +23,7 @@ export const getGlobalStats = createServerFn().handler(async () => {
         };
     } catch (e) {
         console.error("Failed to fetch global stats:", e);
-        return {
-            latestBlock: 0,
-            txCount: 0,
-            mempoolSize: 0,
-        };
+        throw new Error("Failed to fetch global stats");
     }
 });
 
@@ -38,6 +34,9 @@ export const requestGlobalStatsQueryOptions = () =>
         refetchInterval: 5000, // Refresh every 5 seconds
     });
 
-export function useGlobalStats() {
-    return useQuery(requestGlobalStatsQueryOptions());
+export function useGlobalStats({ autoRefetch = false }: { autoRefetch?: boolean } = {}) {
+    return useQuery({
+        ...requestGlobalStatsQueryOptions(),
+        refetchInterval: autoRefetch ? 5000 : false,
+    });
 }

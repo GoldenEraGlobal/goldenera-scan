@@ -215,6 +215,9 @@
   "meta_description_transactions": "Zobraziť posledné transakcie na {appName}",
   "not_found_title": "404 - Stránka nenájdená",
   "not_found_description": "Ľutujeme, stránka, ktorú hľadáte, neexistuje. Mohla byť presunutá alebo odstránená.",
-  "not_found_back_home": "Späť na domovskú stránku"
+  "not_found_back_home": "Späť na domovskú stránku",
+  "error_card_title": "Niečo sa pokazilo",
+  "error_card_description": "Pri načítavaní tejto stránky sa vyskytla neočakávaná chyba.",
+  "error_card_retry": "Skúsiť znova",
+  "error_card_home": "Späť domov"
 }
-

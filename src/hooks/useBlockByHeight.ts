@@ -1,5 +1,6 @@
 
 import { useQuery } from '@tanstack/react-query'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { getClient } from '@/api/client'
@@ -16,7 +17,7 @@ export const getBlockByHeight = createServerFn()
         try {
             return await apiV1BlockGetByHeight(data.height, { client: getClient() })
         } catch (e) {
-            return null
+            throw notFound()
         }
     })
 
@@ -28,11 +29,13 @@ export const blockByHeightQueryOptions = (height: number) =>
 
 export interface UseBlockByHeightProps {
     height?: number
+    autoRefetch?: boolean
 }
 
-export function useBlockByHeight({ height }: UseBlockByHeightProps) {
+export function useBlockByHeight({ height, autoRefetch = false }: UseBlockByHeightProps) {
     return useQuery({
         ...blockByHeightQueryOptions(height ?? 0),
         enabled: typeof height === 'number',
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

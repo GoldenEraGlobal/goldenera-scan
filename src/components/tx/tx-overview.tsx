@@ -5,7 +5,7 @@ import * as m from "@/paraglide/messages"
 import { useTokenUtil } from '@/hooks/useTokenUtil'
 import { useTransaction } from '@/hooks/useTransaction'
 import { DateTime } from '../date-time'
-import { formatNum, formatPayloadType, hexToUtf8, shortenAddress } from '@/lib/utils'
+import { cn, formatNum, formatPayloadType, hexToUtf8, shortenAddress } from '@/lib/utils'
 import { CopyButton } from '@/components/ui/copy-button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import {
@@ -22,20 +22,36 @@ import {
     Network,
     Box,
     ShieldCheck,
+    RefreshCw,
 } from 'lucide-react'
 import { DetailList, DetailItem } from '@/components/ui/detail-list'
+import { Button } from '../ui/button'
 
 export function TxOverview({ hash }: { hash: string }) {
-    const { data: tx, isLoading: txLoading } = useTransaction({ hash })
+    const { data: tx, isLoading: txLoading, refetch } = useTransaction({ hash, autoRefetch: true })
     const { formatWei: formatAmount } = useTokenUtil({ tokenAddress: tx?.tokenAddress })
     const { formatWei: formatFee } = useTokenUtil({}) // Defaults to native
 
     return (
         <Card>
             <CardHeader className="border-b">
-                <CardTitle className="text-base font-semibold flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
-                    {m.tx_detail_overview()}
+                <CardTitle className="text-base font-semibold flex items-center gap-2 justify-between">
+                    <div className="flex items-center gap-2">
+                        <Activity className="h-4 w-4 text-primary" />
+                        {m.tx_detail_overview()}
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => refetch()}
+                        disabled={txLoading}
+                        className="h-8"
+                    >
+                        <RefreshCw className={cn('h-3.5 w-3.5', txLoading && 'animate-spin')} />
+                        <span className="sr-only">
+                            {m.common_refresh()}
+                        </span>
+                    </Button>
                 </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">

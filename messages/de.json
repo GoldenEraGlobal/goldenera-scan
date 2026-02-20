@@ -215,5 +215,9 @@
   "meta_description_transactions": "Neueste Transaktionen auf {appName} anzeigen",
   "not_found_title": "404 - Seite nicht gefunden",
   "not_found_description": "Entschuldigung, die Seite, die Sie suchen, existiert nicht. Sie wurde möglicherweise verschoben oder gelöscht.",
-  "not_found_back_home": "Zurück zur Startseite"
+  "not_found_back_home": "Zurück zur Startseite",
+  "error_card_title": "Etwas ist schief gelaufen",
+  "error_card_description": "Beim Laden dieser Seite ist ein unerwarteter Fehler aufgetreten.",
+  "error_card_retry": "Erneut versuchen",
+  "error_card_home": "Zurück zur Startseite"
 }

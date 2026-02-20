@@ -44,6 +44,9 @@ export const tokensQueryOptions = () =>
         queryFn: getAllTokens,
     })
 
-export function useTokens() {
-    return useQuery(tokensQueryOptions());
+export function useTokens({ autoRefetch = false }: { autoRefetch?: boolean } = {}) {
+    return useQuery({
+        ...tokensQueryOptions(),
+        refetchInterval: autoRefetch ? 10000 : false,
+    });
 }

@@ -6,8 +6,6 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { getLocale } from '../paraglide/runtime.js'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { NuqsAdapter } from 'nuqs/adapters/tanstack-router'
-import { NotFoundCard } from '@/components/not-found-card'
-import { PageSkeleton } from '@/components/page-skeleton'
 import { QueryClient } from '@tanstack/react-query'
 import { tokensQueryOptions } from '@/hooks/useTokens.js'
 import { createServerFn } from '@tanstack/react-start'
@@ -21,8 +19,6 @@ export const Route = createRootRouteWithContext<{
   APP_NAME: string
 }>()({
   shellComponent: RootDocument,
-  notFoundComponent: NotFoundCard,
-  pendingComponent: PageSkeleton,
   beforeLoad: async () => {
     const APP_NAME = (await getAppName()) || 'GoldenEra Scan'
     return { APP_NAME }

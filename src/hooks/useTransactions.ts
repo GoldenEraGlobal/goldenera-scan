@@ -44,7 +44,7 @@ export const getTransactions = createServerFn()
                 totalElements: res.totalElements || 0,
             }
         } catch (e) {
-            return { list: [], totalPages: 1, totalElements: 0 }
+            throw new Error("Failed to fetch transactions")
         }
     })
 
@@ -59,17 +59,11 @@ export interface UseTransactionsProps {
     page: number
     pageSize?: number
     direction?: 'ASC' | 'DESC'
+    autoRefetch?: boolean
 }
 
-export const transactionsQueryOptions = (props: UseTransactionsProps) => {
-    // Determine the query key based on props, similar to how it was in the component
-    // But slightly cleaner
+export const transactionsQueryOptions = (props: Omit<UseTransactionsProps, 'autoRefetch'>) => {
     const { pageSize = 15, direction = 'DESC' } = props
-
-    // We can simplify the query key to basically include everything
-    // But keep it consistent with the previous key structure if possible or just use a new one
-    // Old key: ['transfers-table', address, tokenAddress, txHash, blockHash, pageIndex, txFilter, typeFilter, pageSize, direction]
-    // Let's use a more robust object-based key or just ordered params
     return queryOptions({
         queryKey: ['transactions', { ...props, pageSize, direction }],
         queryFn: () => getTransactions({ data: { ...props, pageSize, direction } }),
@@ -78,8 +72,9 @@ export const transactionsQueryOptions = (props: UseTransactionsProps) => {
 }
 
 export function useTransactions(props: UseTransactionsProps) {
+    const { autoRefetch = false, ...queryProps } = props
     return useQuery({
-        ...transactionsQueryOptions(props),
-        refetchInterval: 10000,
+        ...transactionsQueryOptions(queryProps),
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

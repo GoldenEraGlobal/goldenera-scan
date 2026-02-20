@@ -40,7 +40,7 @@ export const getMempoolTransfers = createServerFn()
                 totalElements: res.totalElements || 0,
             }
         } catch (e) {
-            return { list: [], totalPages: 1, totalElements: 0 }
+            throw new Error("Failed to fetch mempool transactions")
         }
     })
 
@@ -53,9 +53,10 @@ export interface UseMempoolTransactionsProps {
     page: number
     pageSize?: number
     direction?: 'ASC' | 'DESC'
+    autoRefetch?: boolean
 }
 
-export const mempoolTransactionsQueryOptions = (props: UseMempoolTransactionsProps) => {
+export const mempoolTransactionsQueryOptions = (props: Omit<UseMempoolTransactionsProps, 'autoRefetch'>) => {
     const { pageSize = 25, direction = 'DESC' } = props
     return queryOptions({
         queryKey: ['mempool-transactions', { ...props, pageSize, direction }],
@@ -65,8 +66,9 @@ export const mempoolTransactionsQueryOptions = (props: UseMempoolTransactionsPro
 }
 
 export function useMempoolTransactions(props: UseMempoolTransactionsProps) {
+    const { autoRefetch = false, ...queryProps } = props
     return useQuery({
-        ...mempoolTransactionsQueryOptions(props),
-        refetchInterval: 5000,
+        ...mempoolTransactionsQueryOptions(queryProps),
+        refetchInterval: autoRefetch ? 5000 : false,
     })
 }

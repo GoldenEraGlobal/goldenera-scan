@@ -1,5 +1,6 @@
 
 import { useQuery } from '@tanstack/react-query'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { getClient } from '@/api/client'
@@ -16,7 +17,7 @@ export const getBlock = createServerFn()
         try {
             return await apiV1BlockGetByHash(data.hash, { client: getClient() })
         } catch (e) {
-            return null
+            throw notFound()
         }
     })
 
@@ -28,8 +29,12 @@ export const blockQueryOptions = (hash: string) =>
 
 export interface UseBlockProps {
     hash: string
+    autoRefetch?: boolean
 }
 
-export function useBlock({ hash }: UseBlockProps) {
-    return useQuery(blockQueryOptions(hash))
+export function useBlock({ hash, autoRefetch = false }: UseBlockProps) {
+    return useQuery({
+        ...blockQueryOptions(hash),
+        refetchInterval: autoRefetch ? 10000 : false,
+    })
 }

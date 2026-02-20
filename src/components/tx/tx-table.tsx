@@ -131,6 +131,7 @@ export function TxTable({
         isLoading: transfersLoading,
         refetch: refetchTransfers,
         isRefetching: transfersRefetching,
+        isPlaceholderData,
     } = useTransactions(queryParams)
 
     // Fetch tokens for formatting
@@ -366,7 +367,7 @@ export function TxTable({
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={(!transfers && transfersLoading) || transfersRefetching}
+                    isLoading={transfersLoading || isPlaceholderData}
                     rowCount={pageSize}
                     emptyIcon={<FileText className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.table_no_transactions()}

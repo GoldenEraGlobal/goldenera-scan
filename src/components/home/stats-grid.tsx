@@ -6,7 +6,7 @@ import { formatNum } from "@/lib/utils";
 import { useGlobalStats } from "@/hooks/useGlobalStats";
 
 export function StatsGrid() {
-    const { data: stats, isLoading } = useGlobalStats();
+    const { data: stats, isLoading } = useGlobalStats({ autoRefetch: true });
 
     return (
         <div className="container mx-auto px-4 md:px-8 -mt-12 md:-mt-16 relative z-20 mb-8">

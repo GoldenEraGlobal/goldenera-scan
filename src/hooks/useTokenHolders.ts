@@ -33,7 +33,7 @@ export const getHolders = createServerFn()
                 totalElements: res.totalElements || 0,
             }
         } catch (e) {
-            return { list: [], totalPages: 1, totalElements: 0 }
+            throw new Error("Failed to fetch token holders")
         }
     })
 
@@ -42,9 +42,10 @@ export interface UseTokenHoldersProps {
     page: number
     pageSize?: number
     direction?: 'ASC' | 'DESC'
+    autoRefetch?: boolean
 }
 
-export const tokenHoldersQueryOptions = ({ tokenAddress, page, pageSize = 15, direction = 'DESC' }: UseTokenHoldersProps) =>
+export const tokenHoldersQueryOptions = ({ tokenAddress, page, pageSize = 15, direction = 'DESC' }: Omit<UseTokenHoldersProps, 'autoRefetch'>) =>
     queryOptions({
         queryKey: ['token-holders', tokenAddress, page, pageSize, direction],
         queryFn: () => getHolders({ data: { tokenAddress, page, pageSize, direction } }),
@@ -52,8 +53,9 @@ export const tokenHoldersQueryOptions = ({ tokenAddress, page, pageSize = 15, di
     })
 
 export function useTokenHolders(props: UseTokenHoldersProps) {
+    const { autoRefetch = false, ...queryProps } = props
     return useQuery({
-        ...tokenHoldersQueryOptions(props),
-        refetchInterval: 10000,
+        ...tokenHoldersQueryOptions(queryProps),
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

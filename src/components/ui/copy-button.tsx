@@ -47,6 +47,7 @@ export function CopyButton({ value, size = 'sm', className }: CopyButtonProps) {
                     />
                 }
             >
+                <span className="sr-only">Copy {value}</span>
                 {copied ? (
                     <Check className={cn(iconClass, 'text-success')} />
                 ) : (

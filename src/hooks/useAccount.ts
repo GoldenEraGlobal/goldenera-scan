@@ -1,5 +1,6 @@
 
 import { useQuery } from '@tanstack/react-query'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { z } from 'zod'
 import { getClient } from '@/api/client'
@@ -16,7 +17,7 @@ export const getAccount = createServerFn()
         try {
             return await apiV1AccountStatsGetByAddress(data.address, { client: getClient() })
         } catch (e) {
-            return null
+            throw notFound()
         }
     })
 
@@ -28,11 +29,12 @@ export const accountQueryOptions = (address: string) =>
 
 export interface UseAccountProps {
     address: string
+    autoRefetch?: boolean
 }
 
-export function useAccount({ address }: UseAccountProps) {
+export function useAccount({ address, autoRefetch = false }: UseAccountProps) {
     return useQuery({
         ...accountQueryOptions(address),
-        refetchInterval: 10000,
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

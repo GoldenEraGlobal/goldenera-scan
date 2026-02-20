@@ -99,6 +99,7 @@ export function MempoolTable({
         isLoading,
         refetch,
         isRefetching,
+        isPlaceholderData,
     } = useMempoolTransactions({
         address,
         tokenAddress,
@@ -286,6 +287,9 @@ export function MempoolTable({
                             className="h-8"
                         >
                             <RefreshCw className={cn('h-3.5 w-3.5', isRefetching && 'animate-spin')} />
+                            <span className="sr-only">
+                                {m.common_refresh()}
+                            </span>
                         </Button>
                     </div>
                 </div>
@@ -293,7 +297,7 @@ export function MempoolTable({
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={(!transfers && isLoading) || isRefetching}
+                    isLoading={isLoading || isPlaceholderData}
                     rowCount={pagination.pageSize}
                     emptyIcon={<Inbox className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.mempool_empty()}

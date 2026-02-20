@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AddressLink, HashLink } from '@/components/links'
 import {
+    cn,
     formatNum,
 } from '@/lib/utils'
 import {
@@ -15,27 +16,43 @@ import {
     ArrowLeft,
     FileText,
     Shield,
+    RefreshCw,
 } from 'lucide-react'
 import * as m from "@/paraglide/messages"
 import { useBlock } from '@/hooks/useBlock'
 import { useTokenUtil } from '@/hooks/useTokenUtil'
 import { DateTime } from '../date-time'
 import { DetailList, DetailItem } from '@/components/ui/detail-list'
+import { Button } from '../ui/button'
 
 interface BlockOverviewProps {
     hash: string
 }
 
 export function BlockOverview({ hash }: BlockOverviewProps) {
-    const { data: block, isLoading: blockLoading } = useBlock({ hash })
+    const { data: block, isLoading: blockLoading, refetch } = useBlock({ hash })
     const { formatWei } = useTokenUtil()
 
     return (
         <Card>
             <CardHeader className="border-b">
-                <CardTitle className="text-base font-semibold flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
-                    {m.block_detail_overview()}
+                <CardTitle className="text-base font-semibold gap-2 flex flex-row items-center justify-between">
+                    <div className="flex flex-row items-center gap-2">
+                        <Activity className="h-4 w-4 text-primary" />
+                        {m.block_detail_overview()}
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => refetch()}
+                        disabled={blockLoading}
+                        className="h-8"
+                    >
+                        <RefreshCw className={cn('h-3.5 w-3.5', blockLoading && 'animate-spin')} />
+                        <span className="sr-only">
+                            {m.common_refresh()}
+                        </span>
+                    </Button>
                 </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">

@@ -14,7 +14,7 @@ import {
     AutocompleteStatus
 } from "@/components/ui/autocomplete"
 import { Search, Wallet, FileText, Clock, Box, Coins, ShieldCheck, Shield, AtSign } from "lucide-react"
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect, useCallback } from "react"
 import { AccountBalanceDtoV1, AddressAliasDtoV1, AuthorityDtoV1, BlockHeaderDtoV1, MemTransferDtoV1, TokenDtoV1, TxDtoV1, ValidatorDtoV1 } from "@/api/gen"
 import { Badge } from "../ui/badge"
 import { Spinner } from "../ui/spinner"
@@ -198,8 +198,11 @@ export function SearchInput({ className, placeholder }: SearchInputProps) {
     const navigate = useNavigate()
     const [searchValue, setSearchValue] = useState('');
     const debouncedSearchValue = useDebounce(searchValue, 300);
+    const [navigateOnLoad, setNavigateOnLoad] = useState(false);
 
     const { data: searchResults, isLoading, isError } = useSearchResult(debouncedSearchValue)
+
+    const isSearching = (searchValue.length > 0 && searchValue !== debouncedSearchValue) || (isLoading && !!debouncedSearchValue);
 
     const allItems = useMemo<Item[]>(() => {
         if (!searchResults) return []
@@ -256,7 +259,7 @@ export function SearchInput({ className, placeholder }: SearchInputProps) {
     }, [allItems])
 
     function getStatus(): React.ReactNode | null {
-        if (isLoading && debouncedSearchValue) {
+        if (isSearching) {
             return (
                 <>
                     <Spinner />
@@ -282,7 +285,7 @@ export function SearchInput({ className, placeholder }: SearchInputProps) {
 
     const status = getStatus();
 
-    const handleSubmit = (item: Item) => {
+    const handleSubmit = useCallback((item: Item) => {
         switch (item.entity) {
             case 'account':
                 navigate({
@@ -342,20 +345,55 @@ export function SearchInput({ className, placeholder }: SearchInputProps) {
                 break
             case 'address-alias':
                 break
-        };
-    }
+        }
+    }, [navigate]);
+
+    useEffect(() => {
+        if (navigateOnLoad) {
+            if (searchValue === debouncedSearchValue && !isLoading) {
+                if (!isError && allItems.length > 0) {
+                    handleSubmit(allItems[0]);
+                }
+                setNavigateOnLoad(false);
+            }
+        }
+    }, [navigateOnLoad, searchValue, debouncedSearchValue, isLoading, isError, allItems, handleSubmit]);
 
     return (
         <Autocomplete
             items={results}
             value={searchValue}
             onValueChange={(nextSearchValue) => {
+                const selectedItem = allItems.find(i => toValue(i) === nextSearchValue);
+                if (selectedItem) {
+                    handleSubmit(selectedItem);
+                    return;
+                }
                 setSearchValue(nextSearchValue);
             }}
             itemToStringValue={toStr as any}
             filter={null}
         >
-            <AutocompleteInput icon={<Search className="size-5!" />} placeholder={placeholder} className={className} showTrigger={false} />
+            <AutocompleteInput
+                icon={<Search className="size-5!" />}
+                placeholder={placeholder}
+                className={className}
+                showTrigger={false}
+                addon={isSearching ? <div className="pr-3 flex items-center justify-center"><Spinner className="size-4 text-muted-foreground" /></div> : null}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        // Check if user is navigating the popup list with keyboard
+                        const isMenuSelecting = document.querySelector('[data-highlighted]');
+                        if (isMenuSelecting) return;
+
+                        e.preventDefault();
+                        if (searchValue.trim().length === 0) return;
+
+                        // We set navigateOnLoad to true, and let the useEffect handle awaiting debounce and loading
+                        setNavigateOnLoad(true);
+                    }
+                }}
+            />
             <AutocompleteContent alignOffset={-24}>
                 <AutocompleteStatus>
                     {status && (

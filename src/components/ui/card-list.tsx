@@ -34,9 +34,20 @@ export function CardList({
         <Card className={cn("flex flex-col h-full shadow-md", className)}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b">
                 <CardTitle className="text-base font-semibold">{title}</CardTitle>
-                <Button variant="outline" size="sm" className="h-8 text-xs" onClick={onViewAll}>
-                    {viewAllLabel ?? m.common_view_all()}
-                </Button>
+                {onRefresh && (
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={onRefresh}
+                        disabled={isRefetching}
+                        className="h-8"
+                    >
+                        <RefreshCw className={cn('h-3.5 w-3.5', isRefetching && 'animate-spin')} />
+                        <span className="sr-only">
+                            {m.common_refresh()}
+                        </span>
+                    </Button>
+                )}
             </CardHeader>
             <CardContent className="p-0 flex-1">
                 <div className="flex flex-col h-full">

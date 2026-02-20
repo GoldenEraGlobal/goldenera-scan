@@ -5,6 +5,7 @@ import {
     formatWei,
     isNativeToken,
     formatNum,
+    cn,
 } from '@/lib/utils'
 import {
     Globe,
@@ -15,6 +16,7 @@ import {
     Activity,
     Layers,
     Coins,
+    RefreshCw,
 } from 'lucide-react'
 import { useMemo } from 'react'
 import * as m from "@/paraglide/messages"
@@ -22,13 +24,14 @@ import { DetailList, DetailItem } from '@/components/ui/detail-list'
 import { DateTime } from '../date-time'
 import { useTokenDetail } from '@/hooks/useTokenDetail'
 import { useBlockByHeight } from '@/hooks/useBlockByHeight'
+import { Button } from '../ui/button'
 
 interface TokenOverviewProps {
     address: string
 }
 
 export function TokenOverview({ address }: TokenOverviewProps) {
-    const { data: token, isLoading: tokenLoading } = useTokenDetail({ address })
+    const { data: token, isLoading: tokenLoading, refetch } = useTokenDetail({ address })
     const { data: block, isLoading: blockLoading } = useBlockByHeight({ height: token?.createdAtBlockHeight })
 
     const symbol = token?.smallestUnitName ?? ''
@@ -38,9 +41,23 @@ export function TokenOverview({ address }: TokenOverviewProps) {
     return (
         <Card>
             <CardHeader className="border-b">
-                <CardTitle className="text-base font-semibold flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
-                    {m.tx_detail_overview()}
+                <CardTitle className="text-base font-semibold flex items-center gap-2 justify-between">
+                    <div className="flex flex-row items-center gap-2">
+                        <Activity className="h-4 w-4 text-primary" />
+                        {m.tx_detail_overview()}
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => refetch()}
+                        disabled={tokenLoading}
+                        className="h-8"
+                    >
+                        <RefreshCw className={cn('h-3.5 w-3.5', tokenLoading && 'animate-spin')} />
+                        <span className="sr-only">
+                            {m.common_refresh()}
+                        </span>
+                    </Button>
                 </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">

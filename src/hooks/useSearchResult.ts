@@ -20,17 +20,17 @@ export const searchBlockchain = createServerFn()
             })
             return res ?? {}
         } catch (e) {
-            // Return empty object on error instead of throwing to avoid crashing the query
             console.error("Search failed:", e)
-            return {}
+            throw new Error("Search failed")
         }
     })
 
-export function useSearchResult(query: string) {
+export function useSearchResult(query: string, autoRefetch: boolean = false) {
     return useQuery({
         queryKey: ['search', query],
         queryFn: () => searchBlockchain({ data: { query } }),
         enabled: query.length > 0,
         retry: false,
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

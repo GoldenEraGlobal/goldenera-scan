@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { formatNum } from '@/lib/utils'
+import { cn, formatNum } from '@/lib/utils'
 import {
     Wallet,
     ArrowDownLeft,
@@ -7,7 +7,8 @@ import {
     Clock,
     Hash,
     Activity,
-    ShieldCheck
+    ShieldCheck,
+    RefreshCw
 } from 'lucide-react'
 import { Badge } from '../ui/badge'
 import * as m from "@/paraglide/messages"
@@ -15,13 +16,14 @@ import { DetailList, DetailItem } from '@/components/ui/detail-list'
 import { useTokenUtil } from '@/hooks/useTokenUtil'
 import { DateTime } from '../date-time'
 import { useAccount } from '@/hooks/useAccount'
+import { Button } from '../ui/button'
 
 interface AccountOverviewProps {
     address: string
 }
 
 export function AccountOverview({ address }: AccountOverviewProps) {
-    const { data: stats, isLoading: statsLoading } = useAccount({ address })
+    const { data: stats, isLoading: statsLoading, refetch } = useAccount({ address })
     const { formatWei } = useTokenUtil()
 
     const totalTxs =
@@ -30,9 +32,23 @@ export function AccountOverview({ address }: AccountOverviewProps) {
     return (
         <Card>
             <CardHeader className="border-b">
-                <CardTitle className="text-base font-semibold flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
-                    {m.address_overview()}
+                <CardTitle className="text-base font-semibold flex items-center gap-2 justify-between">
+                    <div className="flex flex-row items-center gap-2">
+                        <Activity className="h-4 w-4 text-primary" />
+                        {m.address_overview()}
+                    </div>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => refetch()}
+                        disabled={statsLoading}
+                        className="h-8"
+                    >
+                        <RefreshCw className={cn('h-3.5 w-3.5', statsLoading && 'animate-spin')} />
+                        <span className="sr-only">
+                            {m.common_refresh()}
+                        </span>
+                    </Button>
                 </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">

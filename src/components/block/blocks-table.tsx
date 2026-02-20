@@ -69,6 +69,7 @@ export function BlocksTable({
         isLoading,
         refetch,
         isRefetching,
+        isPlaceholderData,
     } = useBlocks({
         coinbase,
         page: pageIndex,
@@ -188,6 +189,9 @@ export function BlocksTable({
                             className="h-8"
                         >
                             <RefreshCw className={cn('h-3.5 w-3.5', isRefetching && 'animate-spin')} />
+                            <span className="sr-only">
+                                {m.common_refresh()}
+                            </span>
                         </Button>
                     </div>
                 </div>
@@ -195,7 +199,7 @@ export function BlocksTable({
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={(!blocks && isLoading) || isRefetching}
+                    isLoading={isLoading || isPlaceholderData}
                     rowCount={pagination.pageSize}
                     emptyIcon={<Box className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.table_no_blocks()}

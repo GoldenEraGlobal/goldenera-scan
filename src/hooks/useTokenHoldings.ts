@@ -32,7 +32,7 @@ export const getBalances = createServerFn()
                 totalElements: res.totalElements || 0,
             }
         } catch (e) {
-            return { list: [], totalPages: 1, totalElements: 0 }
+            throw new Error("Failed to fetch token holdings")
         }
     })
 
@@ -41,9 +41,10 @@ export interface UseTokenHoldingsProps {
     page: number
     pageSize?: number
     direction?: 'ASC' | 'DESC'
+    autoRefetch?: boolean
 }
 
-export const tokenHoldingsQueryOptions = ({ address, page, pageSize = 10, direction = 'DESC' }: UseTokenHoldingsProps) =>
+export const tokenHoldingsQueryOptions = ({ address, page, pageSize = 10, direction = 'DESC' }: Omit<UseTokenHoldingsProps, 'autoRefetch'>) =>
     queryOptions({
         queryKey: ['token-holdings', address, page, pageSize, direction],
         queryFn: () => getBalances({ data: { address, page, pageSize, direction } }),
@@ -51,8 +52,9 @@ export const tokenHoldingsQueryOptions = ({ address, page, pageSize = 10, direct
     })
 
 export function useTokenHoldings(props: UseTokenHoldingsProps) {
+    const { autoRefetch = false, ...queryProps } = props
     return useQuery({
-        ...tokenHoldingsQueryOptions(props),
-        refetchInterval: 10000,
+        ...tokenHoldingsQueryOptions(queryProps),
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }

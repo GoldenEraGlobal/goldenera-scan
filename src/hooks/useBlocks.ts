@@ -32,7 +32,7 @@ export const getBlocks = createServerFn()
                 totalElements: res.totalElements || 0,
             }
         } catch (e) {
-            return { list: [], totalPages: 1, totalElements: 0 }
+            throw new Error("Failed to fetch blocks")
         }
     })
 
@@ -41,9 +41,10 @@ export interface UseBlocksProps {
     page: number
     pageSize?: number
     direction?: 'ASC' | 'DESC'
+    autoRefetch?: boolean
 }
 
-export const blocksQueryOptions = (props: UseBlocksProps) => {
+export const blocksQueryOptions = (props: Omit<UseBlocksProps, 'autoRefetch'>) => {
     const { pageSize = 25, direction = 'DESC' } = props
     return queryOptions({
         queryKey: ['blocks', { ...props, pageSize, direction }],
@@ -53,8 +54,9 @@ export const blocksQueryOptions = (props: UseBlocksProps) => {
 }
 
 export function useBlocks(props: UseBlocksProps) {
+    const { autoRefetch = false, ...queryProps } = props
     return useQuery({
-        ...blocksQueryOptions(props),
-        refetchInterval: 10000,
+        ...blocksQueryOptions(queryProps),
+        refetchInterval: autoRefetch ? 10000 : false,
     })
 }
