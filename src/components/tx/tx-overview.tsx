@@ -40,18 +40,20 @@ export function TxOverview({ hash }: { hash: string }) {
                         <Activity className="h-4 w-4 text-primary" />
                         {m.tx_detail_overview()}
                     </div>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => refetch()}
-                        disabled={txLoading}
-                        className="h-8"
-                    >
-                        <RefreshCw className={cn('h-3.5 w-3.5', txLoading && 'animate-spin')} />
-                        <span className="sr-only">
-                            {m.common_refresh()}
-                        </span>
-                    </Button>
+                    {tx?.isPending && (
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => refetch()}
+                            disabled={txLoading}
+                            className="h-8"
+                        >
+                            <RefreshCw className={cn('h-3.5 w-3.5', txLoading && 'animate-spin')} />
+                            <span className="sr-only">
+                                {m.common_refresh()}
+                            </span>
+                        </Button>
+                    )}
                 </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">

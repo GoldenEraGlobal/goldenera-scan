@@ -77,6 +77,7 @@ function BlockDetailPage() {
         blockHash={hash}
         title={m.block_detail_transactions_title()}
         pageSize={15}
+        canRefresh={false}
       />
     </div>
   )

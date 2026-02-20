@@ -67,6 +67,7 @@ interface TxTableProps {
     title?: string
     /** Optional class name */
     className?: string
+    canRefresh?: boolean
 }
 
 export function TxTable({
@@ -78,6 +79,7 @@ export function TxTable({
     pageSize = 15,
     title,
     className,
+    canRefresh = true,
 }: TxTableProps) {
     const [pageIndex, setPageIndex] = useQueryState(
         't_page',
@@ -351,15 +353,17 @@ export function TxTable({
                             descLabel={m.sort_newest()}
                             ascLabel={m.sort_oldest()}
                         />
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => refetchTransfers()}
-                            disabled={transfersRefetching}
-                            className="h-8"
-                        >
-                            <RefreshCw className={cn('h-3.5 w-3.5', transfersRefetching && 'animate-spin')} />
-                        </Button>
+                        {canRefresh && (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => refetchTransfers()}
+                                disabled={transfersRefetching}
+                                className="h-8"
+                            >
+                                <RefreshCw className={cn('h-3.5 w-3.5', transfersRefetching && 'animate-spin')} />
+                            </Button>
+                        )}
                     </div>
                 </div>
             </CardHeader>

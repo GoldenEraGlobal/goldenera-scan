@@ -66,8 +66,7 @@ export const getTx = createServerFn()
 export const transactionQueryOptions = (hash: string) =>
     queryOptions({
         queryKey: ['tx-detail', hash],
-        queryFn: () => getTx({ data: { hash } }),
-        refetchInterval: 10000,
+        queryFn: () => getTx({ data: { hash } })
     })
 
 export interface UseTransactionProps {
@@ -78,6 +77,11 @@ export interface UseTransactionProps {
 export function useTransaction({ hash, autoRefetch = false }: UseTransactionProps) {
     return useQuery({
         ...transactionQueryOptions(hash),
-        refetchInterval: autoRefetch ? 30000 : false,
+        refetchInterval: (query) => {
+            if (!autoRefetch) return false;
+            // Only refetch if we don't have data yet OR if the transaction is pending
+            if (query.state.data && !query.state.data.isPending) return false;
+            return 10000; // 10s
+        },
     })
 }

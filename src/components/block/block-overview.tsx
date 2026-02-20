@@ -41,18 +41,6 @@ export function BlockOverview({ hash }: BlockOverviewProps) {
                         <Activity className="h-4 w-4 text-primary" />
                         {m.block_detail_overview()}
                     </div>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => refetch()}
-                        disabled={blockLoading}
-                        className="h-8"
-                    >
-                        <RefreshCw className={cn('h-3.5 w-3.5', blockLoading && 'animate-spin')} />
-                        <span className="sr-only">
-                            {m.common_refresh()}
-                        </span>
-                    </Button>
                 </CardTitle>
             </CardHeader>
             <CardContent className="pt-6">
