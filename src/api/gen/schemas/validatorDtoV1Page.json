@@ -6,11 +6,54 @@
       "items": {
         "type": "object",
         "properties": {
-          "version": { "type": "string", "enum": ["V1"] },
+          "version": { "type": "string", "enum": ["V1", "V2"] },
           "address": { "type": "string" },
           "originTxHash": { "type": "string" },
           "createdAtBlockHeight": { "type": "integer", "format": "int64" },
-          "createdAtTimestamp": { "type": "string", "format": "date-time" }
+          "createdAtTimestamp": { "type": "string", "format": "date-time" },
+          "miningLimitMode": {
+            "type": "string",
+            "enum": ["UNLIMITED", "LIMITED"],
+            "description": "Effective mining limit mode at the canonical head"
+          },
+          "miningPolicySource": {
+            "type": "string",
+            "enum": ["LEGACY_DEFAULT", "EXPLICIT"],
+            "description": "Whether the effective policy is implicit legacy behavior or explicit V2 state"
+          },
+          "maxMiningShareBps": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Maximum mining share in basis points; the value is not a limit when mode is UNLIMITED"
+          },
+          "maxBlocksInCurrentWindow": {
+            "type": ["integer", "null"],
+            "format": "int64",
+            "description": "Current canonical-head quota for a limited validator"
+          },
+          "blocksMinedInCurrentWindow": {
+            "type": ["integer", "null"],
+            "format": "int64",
+            "description": "Blocks mined in the current canonical-head window"
+          },
+          "remainingBlocksInCurrentWindow": {
+            "type": ["integer", "null"],
+            "format": "int64",
+            "description": "Remaining current-window quota at the canonical head"
+          },
+          "miningEligible": {
+            "type": ["boolean", "null"],
+            "description": "Informational eligibility derived from the canonical head"
+          },
+          "policyUpdatedByTxHash": { "type": ["string", "null"] },
+          "policyUpdatedAtBlockHeight": {
+            "type": ["integer", "null"],
+            "format": "int64"
+          },
+          "policyUpdatedAtTimestamp": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          }
         },
         "x-readme-ref-name": "ValidatorDtoV1"
       }

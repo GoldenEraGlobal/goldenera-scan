@@ -40,6 +40,10 @@ export type NetworkParamsSet = (TxPayloadDtoV1 & {
    */
   minTxByteFee?: string
   /**
+   * @type integer | undefined, int64
+   */
+  validatorMiningWindowBlocks?: number
+  /**
    * @description Payload type discriminator
    * @type string
    */

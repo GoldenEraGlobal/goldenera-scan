@@ -1407,16 +1407,29 @@ export type {
   TxPayloadDtoV1PayloadTypeEnumKey,
   TxPayloadDtoV1,
 } from './types/TxPayloadDtoV1.ts'
-export type { ValidatorAdd } from './types/ValidatorAdd.ts'
+export type {
+  ValidatorAddMiningLimitModeEnumKey,
+  ValidatorAdd,
+} from './types/ValidatorAdd.ts'
 export type {
   ValidatorAddedDtoTxVersionEnumKey,
   ValidatorAddedDto,
 } from './types/ValidatorAddedDto.ts'
 export type {
   ValidatorDtoV1VersionEnumKey,
+  ValidatorDtoV1MiningLimitModeEnumKey,
+  ValidatorDtoV1MiningPolicySourceEnumKey,
   ValidatorDtoV1,
 } from './types/ValidatorDtoV1.ts'
 export type { ValidatorDtoV1Page } from './types/ValidatorDtoV1Page.ts'
+export type {
+  ValidatorMiningPolicyChangedDtoTxVersionEnumKey,
+  ValidatorMiningPolicyChangedDto,
+} from './types/ValidatorMiningPolicyChangedDto.ts'
+export type {
+  ValidatorMiningPolicySetMiningLimitModeEnumKey,
+  ValidatorMiningPolicySet,
+} from './types/ValidatorMiningPolicySet.ts'
 export type { ValidatorRemove } from './types/ValidatorRemove.ts'
 export type {
   ValidatorRemovedDtoTxVersionEnumKey,
@@ -1424,6 +1437,8 @@ export type {
 } from './types/ValidatorRemovedDto.ts'
 export type {
   ValidatorStateDtoV1VersionEnumKey,
+  ValidatorStateDtoV1MiningLimitModeEnumKey,
+  ValidatorStateDtoV1MiningPolicySourceEnumKey,
   ValidatorStateDtoV1,
 } from './types/ValidatorStateDtoV1.ts'
 export type { VoteTypeEnumKey, Vote } from './types/Vote.ts'
@@ -1619,10 +1634,17 @@ export { txDtoV1TypeEnum } from './types/TxDtoV1.ts'
 export { txDtoV1NetworkEnum } from './types/TxDtoV1.ts'
 export { txDtoV1PayloadTypeEnum } from './types/TxDtoV1.ts'
 export { txPayloadDtoV1PayloadTypeEnum } from './types/TxPayloadDtoV1.ts'
+export { validatorAddMiningLimitModeEnum } from './types/ValidatorAdd.ts'
 export { validatorAddedDtoTxVersionEnum } from './types/ValidatorAddedDto.ts'
 export { validatorDtoV1VersionEnum } from './types/ValidatorDtoV1.ts'
+export { validatorDtoV1MiningLimitModeEnum } from './types/ValidatorDtoV1.ts'
+export { validatorDtoV1MiningPolicySourceEnum } from './types/ValidatorDtoV1.ts'
+export { validatorMiningPolicyChangedDtoTxVersionEnum } from './types/ValidatorMiningPolicyChangedDto.ts'
+export { validatorMiningPolicySetMiningLimitModeEnum } from './types/ValidatorMiningPolicySet.ts'
 export { validatorRemovedDtoTxVersionEnum } from './types/ValidatorRemovedDto.ts'
 export { validatorStateDtoV1VersionEnum } from './types/ValidatorStateDtoV1.ts'
+export { validatorStateDtoV1MiningLimitModeEnum } from './types/ValidatorStateDtoV1.ts'
+export { validatorStateDtoV1MiningPolicySourceEnum } from './types/ValidatorStateDtoV1.ts'
 export { voteTypeEnum } from './types/Vote.ts'
 export { webhookCreateInDtoV1TypeEnum } from './types/WebhookCreateInDtoV1.ts'
 export { webhookDtoV1TypeEnum } from './types/WebhookDtoV1.ts'

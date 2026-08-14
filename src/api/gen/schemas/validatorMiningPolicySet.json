@@ -34,7 +34,7 @@
     {
       "type": "object",
       "properties": {
-        "address": { "type": "string" },
+        "validatorAddress": { "type": "string" },
         "miningLimitMode": {
           "type": "string",
           "enum": ["LIMITED", "UNLIMITED"]
@@ -43,7 +43,7 @@
       }
     }
   ],
-  "description": "Add validator payload",
+  "description": "Set validator mining policy payload",
   "required": ["payloadType"],
-  "x-readme-ref-name": "ValidatorAdd"
+  "x-readme-ref-name": "ValidatorMiningPolicySet"
 }

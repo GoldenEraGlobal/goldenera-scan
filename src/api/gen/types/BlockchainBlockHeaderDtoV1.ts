@@ -21,6 +21,7 @@ import type { TokenMintedDto } from './TokenMintedDto.ts'
 import type { TokenSupplyUpdatedDto } from './TokenSupplyUpdatedDto.ts'
 import type { TokenUpdatedDto } from './TokenUpdatedDto.ts'
 import type { ValidatorAddedDto } from './ValidatorAddedDto.ts'
+import type { ValidatorMiningPolicyChangedDto } from './ValidatorMiningPolicyChangedDto.ts'
 import type { ValidatorRemovedDto } from './ValidatorRemovedDto.ts'
 
 export type BlockchainBlockHeaderDtoV1 = {
@@ -55,6 +56,7 @@ export type BlockchainBlockHeaderDtoV1 = {
     | TokenSupplyUpdatedDto
     | TokenUpdatedDto
     | ValidatorAddedDto
+    | ValidatorMiningPolicyChangedDto
     | ValidatorRemovedDto
   )[]
 }

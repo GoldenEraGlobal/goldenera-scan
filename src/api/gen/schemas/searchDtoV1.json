@@ -63,6 +63,7 @@
               "BIP_TOKEN_UPDATE",
               "BIP_VOTE",
               "BIP_VALIDATOR_ADD",
+              "BIP_VALIDATOR_MINING_POLICY_SET",
               "BIP_VALIDATOR_REMOVE"
             ]
           },
@@ -82,6 +83,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -126,6 +128,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -167,6 +170,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -208,6 +212,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -249,6 +254,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -282,7 +288,11 @@
                       },
                       "minDifficulty": { "type": "string" },
                       "minTxBaseFee": { "type": "string" },
-                      "minTxByteFee": { "type": "string" }
+                      "minTxByteFee": { "type": "string" },
+                      "validatorMiningWindowBlocks": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
                     }
                   }
                 ],
@@ -304,6 +314,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -349,6 +360,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -401,6 +413,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -446,6 +459,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -493,6 +507,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -513,7 +528,17 @@
                   },
                   {
                     "type": "object",
-                    "properties": { "address": { "type": "string" } }
+                    "properties": {
+                      "address": { "type": "string" },
+                      "miningLimitMode": {
+                        "type": "string",
+                        "enum": ["LIMITED", "UNLIMITED"]
+                      },
+                      "maxMiningShareBps": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
                   }
                 ],
                 "description": "Add validator payload",
@@ -534,6 +559,59 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
+                        "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                        "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                        "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                        "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                        "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                        "BIP_VOTE": "#/components/schemas/Vote"
+                      }
+                    },
+                    "properties": {
+                      "payloadType": {
+                        "type": "string",
+                        "description": "Payload type discriminator",
+                        "example": "BIP_ADDRESS_ALIAS_ADD"
+                      }
+                    },
+                    "required": ["payloadType"],
+                    "x-readme-ref-name": "TxPayloadDtoV1"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "validatorAddress": { "type": "string" },
+                      "miningLimitMode": {
+                        "type": "string",
+                        "enum": ["LIMITED", "UNLIMITED"]
+                      },
+                      "maxMiningShareBps": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                ],
+                "description": "Set validator mining policy payload",
+                "required": ["payloadType"],
+                "x-readme-ref-name": "ValidatorMiningPolicySet"
+              },
+              {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Transaction payload",
+                    "discriminator": {
+                      "propertyName": "payloadType",
+                      "mapping": {
+                        "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                        "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                        "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                        "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                        "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                        "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -575,6 +653,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -659,6 +738,7 @@
               "BIP_TOKEN_UPDATE",
               "BIP_VOTE",
               "BIP_VALIDATOR_ADD",
+              "BIP_VALIDATOR_MINING_POLICY_SET",
               "BIP_VALIDATOR_REMOVE"
             ]
           },
@@ -678,6 +758,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -722,6 +803,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -763,6 +845,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -804,6 +887,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -845,6 +929,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -878,7 +963,11 @@
                       },
                       "minDifficulty": { "type": "string" },
                       "minTxBaseFee": { "type": "string" },
-                      "minTxByteFee": { "type": "string" }
+                      "minTxByteFee": { "type": "string" },
+                      "validatorMiningWindowBlocks": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
                     }
                   }
                 ],
@@ -900,6 +989,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -945,6 +1035,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -997,6 +1088,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -1042,6 +1134,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -1089,6 +1182,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -1109,7 +1203,17 @@
                   },
                   {
                     "type": "object",
-                    "properties": { "address": { "type": "string" } }
+                    "properties": {
+                      "address": { "type": "string" },
+                      "miningLimitMode": {
+                        "type": "string",
+                        "enum": ["LIMITED", "UNLIMITED"]
+                      },
+                      "maxMiningShareBps": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
                   }
                 ],
                 "description": "Add validator payload",
@@ -1130,6 +1234,59 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
+                        "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
+                        "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
+                        "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
+                        "BIP_TOKEN_MINT": "#/components/schemas/TokenMint",
+                        "BIP_TOKEN_UPDATE": "#/components/schemas/TokenUpdate",
+                        "BIP_VOTE": "#/components/schemas/Vote"
+                      }
+                    },
+                    "properties": {
+                      "payloadType": {
+                        "type": "string",
+                        "description": "Payload type discriminator",
+                        "example": "BIP_ADDRESS_ALIAS_ADD"
+                      }
+                    },
+                    "required": ["payloadType"],
+                    "x-readme-ref-name": "TxPayloadDtoV1"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "validatorAddress": { "type": "string" },
+                      "miningLimitMode": {
+                        "type": "string",
+                        "enum": ["LIMITED", "UNLIMITED"]
+                      },
+                      "maxMiningShareBps": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                ],
+                "description": "Set validator mining policy payload",
+                "required": ["payloadType"],
+                "x-readme-ref-name": "ValidatorMiningPolicySet"
+              },
+              {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Transaction payload",
+                    "discriminator": {
+                      "propertyName": "payloadType",
+                      "mapping": {
+                        "BIP_ADDRESS_ALIAS_ADD": "#/components/schemas/AddressAliasAdd",
+                        "BIP_ADDRESS_ALIAS_REMOVE": "#/components/schemas/AddressAliasRemove",
+                        "BIP_AUTHORITY_ADD": "#/components/schemas/AuthorityAdd",
+                        "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
+                        "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
+                        "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -1171,6 +1328,7 @@
                         "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
                         "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
                         "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+                        "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
                         "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
                         "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
                         "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -1256,11 +1414,54 @@
       "items": {
         "type": "object",
         "properties": {
-          "version": { "type": "string", "enum": ["V1"] },
+          "version": { "type": "string", "enum": ["V1", "V2"] },
           "address": { "type": "string" },
           "originTxHash": { "type": "string" },
           "createdAtBlockHeight": { "type": "integer", "format": "int64" },
-          "createdAtTimestamp": { "type": "string", "format": "date-time" }
+          "createdAtTimestamp": { "type": "string", "format": "date-time" },
+          "miningLimitMode": {
+            "type": "string",
+            "enum": ["UNLIMITED", "LIMITED"],
+            "description": "Effective mining limit mode at the canonical head"
+          },
+          "miningPolicySource": {
+            "type": "string",
+            "enum": ["LEGACY_DEFAULT", "EXPLICIT"],
+            "description": "Whether the effective policy is implicit legacy behavior or explicit V2 state"
+          },
+          "maxMiningShareBps": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Maximum mining share in basis points; the value is not a limit when mode is UNLIMITED"
+          },
+          "maxBlocksInCurrentWindow": {
+            "type": ["integer", "null"],
+            "format": "int64",
+            "description": "Current canonical-head quota for a limited validator"
+          },
+          "blocksMinedInCurrentWindow": {
+            "type": ["integer", "null"],
+            "format": "int64",
+            "description": "Blocks mined in the current canonical-head window"
+          },
+          "remainingBlocksInCurrentWindow": {
+            "type": ["integer", "null"],
+            "format": "int64",
+            "description": "Remaining current-window quota at the canonical head"
+          },
+          "miningEligible": {
+            "type": ["boolean", "null"],
+            "description": "Informational eligibility derived from the canonical head"
+          },
+          "policyUpdatedByTxHash": { "type": ["string", "null"] },
+          "policyUpdatedAtBlockHeight": {
+            "type": ["integer", "null"],
+            "format": "int64"
+          },
+          "policyUpdatedAtTimestamp": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          }
         },
         "x-readme-ref-name": "ValidatorDtoV1"
       }

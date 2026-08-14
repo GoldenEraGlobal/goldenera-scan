@@ -13,6 +13,7 @@ import type { TokenCreate } from './TokenCreate.ts'
 import type { TokenMint } from './TokenMint.ts'
 import type { TokenUpdate } from './TokenUpdate.ts'
 import type { ValidatorAdd } from './ValidatorAdd.ts'
+import type { ValidatorMiningPolicySet } from './ValidatorMiningPolicySet.ts'
 import type { ValidatorRemove } from './ValidatorRemove.ts'
 import type { Vote } from './Vote.ts'
 
@@ -54,6 +55,7 @@ export type BipStateMetadataDtoV1 = {
     | TokenMint
     | TokenUpdate
     | ValidatorAdd
+    | ValidatorMiningPolicySet
     | ValidatorRemove
     | Vote
 }

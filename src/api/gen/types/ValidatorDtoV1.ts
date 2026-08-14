@@ -5,10 +5,27 @@
 
 export const validatorDtoV1VersionEnum = {
   V1: 'V1',
+  V2: 'V2',
 } as const
 
 export type ValidatorDtoV1VersionEnumKey =
   (typeof validatorDtoV1VersionEnum)[keyof typeof validatorDtoV1VersionEnum]
+
+export const validatorDtoV1MiningLimitModeEnum = {
+  UNLIMITED: 'UNLIMITED',
+  LIMITED: 'LIMITED',
+} as const
+
+export type ValidatorDtoV1MiningLimitModeEnumKey =
+  (typeof validatorDtoV1MiningLimitModeEnum)[keyof typeof validatorDtoV1MiningLimitModeEnum]
+
+export const validatorDtoV1MiningPolicySourceEnum = {
+  LEGACY_DEFAULT: 'LEGACY_DEFAULT',
+  EXPLICIT: 'EXPLICIT',
+} as const
+
+export type ValidatorDtoV1MiningPolicySourceEnumKey =
+  (typeof validatorDtoV1MiningPolicySourceEnum)[keyof typeof validatorDtoV1MiningPolicySourceEnum]
 
 export type ValidatorDtoV1 = {
   /**
@@ -31,4 +48,51 @@ export type ValidatorDtoV1 = {
    * @type string | undefined, date-time
    */
   createdAtTimestamp?: string
+  /**
+   * @description Effective mining limit mode at the canonical head
+   * @type string | undefined
+   */
+  miningLimitMode?: ValidatorDtoV1MiningLimitModeEnumKey
+  /**
+   * @description Whether the effective policy is implicit legacy behavior or explicit V2 state
+   * @type string | undefined
+   */
+  miningPolicySource?: ValidatorDtoV1MiningPolicySourceEnumKey
+  /**
+   * @description Maximum mining share in basis points; the value is not a limit when mode is UNLIMITED
+   * @type integer | undefined, int64
+   */
+  maxMiningShareBps?: number
+  /**
+   * @description Current canonical-head quota for a limited validator
+   * @type integer,null, int64
+   */
+  maxBlocksInCurrentWindow?: number | null
+  /**
+   * @description Blocks mined in the current canonical-head window
+   * @type integer,null, int64
+   */
+  blocksMinedInCurrentWindow?: number | null
+  /**
+   * @description Remaining current-window quota at the canonical head
+   * @type integer,null, int64
+   */
+  remainingBlocksInCurrentWindow?: number | null
+  /**
+   * @description Informational eligibility derived from the canonical head
+   * @type boolean,null
+   */
+  miningEligible?: boolean | null
+  /**
+   * @type string,null
+   */
+  policyUpdatedByTxHash?: string | null
+  /**
+   * @type integer,null, int64
+   */
+  policyUpdatedAtBlockHeight?: number | null
+  /**
+   * @type string,null, date-time
+   */
+  policyUpdatedAtTimestamp?: string | null
 }

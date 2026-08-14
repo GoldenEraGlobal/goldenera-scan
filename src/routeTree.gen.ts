@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LayoutValidatorsRouteImport } from './routes/_layout.validators'
 import { Route as LayoutTransactionsRouteImport } from './routes/_layout.transactions'
 import { Route as LayoutMempoolRouteImport } from './routes/_layout.mempool'
 import { Route as LayoutBlocksRouteImport } from './routes/_layout.blocks'
@@ -28,6 +29,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const LayoutValidatorsRoute = LayoutValidatorsRouteImport.update({
+  id: '/validators',
+  path: '/validators',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutTransactionsRoute = LayoutTransactionsRouteImport.update({
   id: '/transactions',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/blocks': typeof LayoutBlocksRoute
   '/mempool': typeof LayoutMempoolRoute
   '/transactions': typeof LayoutTransactionsRoute
+  '/validators': typeof LayoutValidatorsRoute
   '/account/$address': typeof LayoutAccountAddressRoute
   '/block/$hash': typeof LayoutBlockHashRoute
   '/token/$address': typeof LayoutTokenAddressRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/blocks': typeof LayoutBlocksRoute
   '/mempool': typeof LayoutMempoolRoute
   '/transactions': typeof LayoutTransactionsRoute
+  '/validators': typeof LayoutValidatorsRoute
   '/account/$address': typeof LayoutAccountAddressRoute
   '/block/$hash': typeof LayoutBlockHashRoute
   '/token/$address': typeof LayoutTokenAddressRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/_layout/blocks': typeof LayoutBlocksRoute
   '/_layout/mempool': typeof LayoutMempoolRoute
   '/_layout/transactions': typeof LayoutTransactionsRoute
+  '/_layout/validators': typeof LayoutValidatorsRoute
   '/_layout/account/$address': typeof LayoutAccountAddressRoute
   '/_layout/block/$hash': typeof LayoutBlockHashRoute
   '/_layout/token/$address': typeof LayoutTokenAddressRoute
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/mempool'
     | '/transactions'
+    | '/validators'
     | '/account/$address'
     | '/block/$hash'
     | '/token/$address'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/mempool'
     | '/transactions'
+    | '/validators'
     | '/account/$address'
     | '/block/$hash'
     | '/token/$address'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
     | '/_layout/blocks'
     | '/_layout/mempool'
     | '/_layout/transactions'
+    | '/_layout/validators'
     | '/_layout/account/$address'
     | '/_layout/block/$hash'
     | '/_layout/token/$address'
@@ -162,6 +174,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_layout/validators': {
+      id: '/_layout/validators'
+      path: '/validators'
+      fullPath: '/validators'
+      preLoaderRoute: typeof LayoutValidatorsRouteImport
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/transactions': {
       id: '/_layout/transactions'
@@ -227,6 +246,7 @@ interface LayoutRouteChildren {
   LayoutBlocksRoute: typeof LayoutBlocksRoute
   LayoutMempoolRoute: typeof LayoutMempoolRoute
   LayoutTransactionsRoute: typeof LayoutTransactionsRoute
+  LayoutValidatorsRoute: typeof LayoutValidatorsRoute
   LayoutAccountAddressRoute: typeof LayoutAccountAddressRoute
   LayoutBlockHashRoute: typeof LayoutBlockHashRoute
   LayoutTokenAddressRoute: typeof LayoutTokenAddressRoute
@@ -238,6 +258,7 @@ const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutBlocksRoute: LayoutBlocksRoute,
   LayoutMempoolRoute: LayoutMempoolRoute,
   LayoutTransactionsRoute: LayoutTransactionsRoute,
+  LayoutValidatorsRoute: LayoutValidatorsRoute,
   LayoutAccountAddressRoute: LayoutAccountAddressRoute,
   LayoutBlockHashRoute: LayoutBlockHashRoute,
   LayoutTokenAddressRoute: LayoutTokenAddressRoute,

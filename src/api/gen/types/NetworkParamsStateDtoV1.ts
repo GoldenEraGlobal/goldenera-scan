@@ -5,6 +5,7 @@
 
 export const networkParamsStateDtoV1VersionEnum = {
   V1: 'V1',
+  V2: 'V2',
 } as const
 
 export type NetworkParamsStateDtoV1VersionEnumKey =
@@ -55,6 +56,14 @@ export type NetworkParamsStateDtoV1 = {
    * @type integer | undefined, int64
    */
   currentValidatorCount?: number
+  /**
+   * @type integer | undefined, int64
+   */
+  validatorMiningWindowBlocks?: number
+  /**
+   * @type integer | undefined, int64
+   */
+  currentUnlimitedValidatorCount?: number
   /**
    * @type string | undefined
    */
