@@ -5,6 +5,14 @@
 
 import type { TxPayloadDtoV1 } from './TxPayloadDtoV1.ts'
 
+export const authorityAddPayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type AuthorityAddPayloadVersionEnumKey =
+  (typeof authorityAddPayloadVersionEnum)[keyof typeof authorityAddPayloadVersionEnum]
+
 /**
  * @description Add authority payload
  */
@@ -20,4 +28,9 @@ export type AuthorityAdd = (TxPayloadDtoV1 & {
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: AuthorityAddPayloadVersionEnumKey
 }

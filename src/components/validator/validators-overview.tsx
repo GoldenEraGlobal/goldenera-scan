@@ -1,4 +1,5 @@
 import {
+  AlertTriangle,
   CheckCircle2,
   Clock3,
   Gauge,
@@ -9,9 +10,10 @@ import {
 import type { ValidatorDtoV1 } from '@/api/gen'
 import { useValidators } from '@/hooks/useValidators'
 import { presentMiningPolicy } from '@/lib/mining-economics'
-import { formatNum, cn } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { AddressLink, HashLink } from '@/components/links'
 import { DateTime } from '@/components/date-time'
+import { getLocale } from '@/paraglide/runtime'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -24,11 +26,20 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import * as m from '@/paraglide/messages'
 
-const value = (number: number | null | undefined) =>
-  number == null ? '—' : formatNum(number)
+const value = (number: number | null | undefined, locale: string) =>
+  number == null ? '—' : new Intl.NumberFormat(locale).format(number)
 
-function ValidatorCard({ validator }: { validator: ValidatorDtoV1 }) {
-  const policy = presentMiningPolicy(validator)
+function ValidatorCard({
+  validator,
+  snapshotCurrent,
+  locale,
+}: {
+  validator: ValidatorDtoV1
+  snapshotCurrent: boolean
+  locale: string
+}) {
+  const policy = presentMiningPolicy(validator, locale)
+  const eligible = snapshotCurrent ? policy.eligible : null
   const modeLabel =
     policy.mode === 'UNLIMITED'
       ? m.validators_mode_unlimited()
@@ -80,8 +91,8 @@ function ValidatorCard({ validator }: { validator: ValidatorDtoV1 }) {
           <p className="font-semibold">
             {policy.mode === 'LIMITED'
               ? m.validators_usage_value({
-                  mined: value(policy.mined),
-                  quota: value(policy.quota),
+                  mined: value(policy.mined, locale),
+                  quota: value(policy.quota, locale),
                 })
               : '—'}
           </p>
@@ -90,7 +101,7 @@ function ValidatorCard({ validator }: { validator: ValidatorDtoV1 }) {
           <p className="text-xs text-muted-foreground">
             {m.validators_remaining()}
           </p>
-          <p className="font-semibold">{value(policy.remaining)}</p>
+          <p className="font-semibold">{value(policy.remaining, locale)}</p>
         </div>
         <div>
           <p className="text-xs text-muted-foreground">
@@ -99,20 +110,22 @@ function ValidatorCard({ validator }: { validator: ValidatorDtoV1 }) {
           <p
             className={cn(
               'flex items-center gap-1.5 font-semibold',
-              policy.eligible === true && 'text-emerald-600',
-              policy.eligible === false && 'text-destructive',
+              eligible === true && 'text-emerald-600',
+              eligible === false && 'text-destructive',
             )}
           >
-            {policy.eligible === true ? (
+            {eligible === true ? (
               <CheckCircle2 className="size-4" />
-            ) : policy.eligible === false ? (
+            ) : eligible === false ? (
               <ShieldX className="size-4" />
             ) : null}
-            {policy.eligible === true
-              ? m.validators_eligible_yes()
-              : policy.eligible === false
-                ? m.validators_eligible_no()
-                : m.common_na()}
+            {!snapshotCurrent
+              ? m.validators_eligible_stale()
+              : eligible === true
+                ? m.validators_eligible_yes()
+                : eligible === false
+                  ? m.validators_eligible_no()
+                  : m.common_na()}
           </p>
         </div>
         <div className="sm:col-span-2">
@@ -133,7 +146,7 @@ function ValidatorCard({ validator }: { validator: ValidatorDtoV1 }) {
           <p className="text-xs text-muted-foreground">
             {m.validators_policy_height()}
           </p>
-          <p>#{value(validator.policyUpdatedAtBlockHeight)}</p>
+          <p>#{value(validator.policyUpdatedAtBlockHeight, locale)}</p>
         </div>
         <div>
           <p className="text-xs text-muted-foreground">
@@ -147,12 +160,37 @@ function ValidatorCard({ validator }: { validator: ValidatorDtoV1 }) {
 }
 
 export function ValidatorsOverview() {
-  const { data, isLoading, isRefetching, refetch } = useValidators({
-    autoRefetch: true,
-  })
+  const {
+    data,
+    dataUpdatedAt,
+    isError,
+    isLoading,
+    isRefetchError,
+    isRefetching,
+    isStale,
+    refetch,
+  } = useValidators({ autoRefetch: true })
+  const locale = getLocale()
+  const queryFailed = isError || isRefetchError
+  const snapshotCurrent = Boolean(data) && !queryFailed && !isStale
   const params = data?.networkParams
   return (
     <div className="space-y-6">
+      {queryFailed || (data && isStale) ? (
+        <div
+          role="alert"
+          className="flex items-start gap-2 rounded-md border border-amber-500/50 bg-amber-500/10 p-3 text-sm"
+        >
+          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" />
+          <p>
+            {queryFailed
+              ? data
+                ? m.validators_refresh_failed()
+                : m.validators_load_failed()
+              : m.validators_snapshot_stale()}
+          </p>
+        </div>
+      ) : null}
       <Card>
         <CardHeader className="border-b">
           <div className="flex items-start justify-between gap-4">
@@ -162,6 +200,24 @@ export function ValidatorsOverview() {
                 {m.validators_network_title()}
               </CardTitle>
               <CardDescription>{m.validators_canonical_note()}</CardDescription>
+              {data ? (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {m.validators_snapshot_head({
+                    height: value(data.headHeight, locale),
+                    hash: `${data.headHash.slice(0, 10)}…${data.headHash.slice(-8)}`,
+                  })}
+                </p>
+              ) : null}
+              {dataUpdatedAt > 0 ? (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {m.validators_last_updated({
+                    time: new Intl.DateTimeFormat(locale, {
+                      dateStyle: 'medium',
+                      timeStyle: 'medium',
+                    }).format(new Date(dataUpdatedAt)),
+                  })}
+                </p>
+              ) : null}
             </div>
             <Button
               variant="outline"
@@ -184,7 +240,7 @@ export function ValidatorsOverview() {
               {isLoading ? (
                 <Skeleton className="h-7 w-20" />
               ) : (
-                value(params?.validatorMiningWindowBlocks)
+                value(params?.validatorMiningWindowBlocks, locale)
               )}
             </p>
           </div>
@@ -196,7 +252,7 @@ export function ValidatorsOverview() {
               {isLoading ? (
                 <Skeleton className="h-7 w-20" />
               ) : (
-                value(params?.currentUnlimitedValidatorCount)
+                value(params?.currentUnlimitedValidatorCount, locale)
               )}
             </p>
           </div>
@@ -208,7 +264,7 @@ export function ValidatorsOverview() {
               {isLoading ? (
                 <Skeleton className="h-7 w-20" />
               ) : (
-                value(params?.currentValidatorCount)
+                value(params?.currentValidatorCount, locale)
               )}
             </p>
           </div>
@@ -229,6 +285,8 @@ export function ValidatorsOverview() {
             <ValidatorCard
               key={validator.address ?? index}
               validator={validator}
+              snapshotCurrent={snapshotCurrent}
+              locale={locale}
             />
           ))}
         </div>

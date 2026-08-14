@@ -12,6 +12,7 @@
           "BIP_AUTHORITY_REMOVE": "#/components/schemas/AuthorityRemove",
           "BIP_VALIDATOR_ADD": "#/components/schemas/ValidatorAdd",
           "BIP_VALIDATOR_REMOVE": "#/components/schemas/ValidatorRemove",
+          "BIP_VALIDATOR_MINING_POLICY_SET": "#/components/schemas/ValidatorMiningPolicySet",
           "BIP_NETWORK_PARAMS_SET": "#/components/schemas/NetworkParamsSet",
           "BIP_TOKEN_BURN": "#/components/schemas/TokenBurn",
           "BIP_TOKEN_CREATE": "#/components/schemas/TokenCreate",
@@ -21,13 +22,18 @@
         }
       },
       "properties": {
+        "payloadVersion": {
+          "type": "string",
+          "description": "Version of the concrete payload schema",
+          "enum": ["V1", "V2"]
+        },
         "payloadType": {
           "type": "string",
           "description": "Payload type discriminator",
           "example": "BIP_ADDRESS_ALIAS_ADD"
         }
       },
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "TxPayloadDtoV1"
     },
     {
@@ -44,6 +50,6 @@
     }
   ],
   "description": "Create token payload",
-  "required": ["payloadType"],
+  "required": ["payloadType", "payloadVersion"],
   "x-readme-ref-name": "TokenCreate"
 }

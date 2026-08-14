@@ -1,7 +1,35 @@
 {
   "type": "object",
   "properties": {
-    "list": {
+    "headHeight": { "type": "integer", "format": "int64" },
+    "headHash": { "type": "string" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "networkParams": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string", "enum": ["V1", "V2"] },
+        "blockReward": { "type": "string" },
+        "blockRewardPoolAddress": { "type": "string" },
+        "targetMiningTimeMs": { "type": "integer", "format": "int64" },
+        "asertHalfLifeBlocks": { "type": "integer", "format": "int64" },
+        "asertAnchorHeight": { "type": "integer", "format": "int64" },
+        "minDifficulty": { "type": "string" },
+        "minTxBaseFee": { "type": "string" },
+        "minTxByteFee": { "type": "string" },
+        "updatedByTxHash": { "type": "string" },
+        "currentAuthorityCount": { "type": "integer", "format": "int64" },
+        "currentValidatorCount": { "type": "integer", "format": "int64" },
+        "validatorMiningWindowBlocks": { "type": "integer", "format": "int64" },
+        "currentUnlimitedValidatorCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
+        "updatedAtTimestamp": { "type": "string", "format": "date-time" }
+      },
+      "x-readme-ref-name": "NetworkParamsDtoV1"
+    },
+    "validators": {
       "type": "array",
       "items": {
         "type": "object",
@@ -42,9 +70,7 @@
         },
         "x-readme-ref-name": "ValidatorDtoV1"
       }
-    },
-    "totalPages": { "type": "integer", "format": "int32" },
-    "totalElements": { "type": "integer", "format": "int64" }
+    }
   },
-  "x-readme-ref-name": "ValidatorDtoV1_Page"
+  "x-readme-ref-name": "MiningEconomicsSnapshotDtoV1"
 }

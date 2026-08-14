@@ -38,12 +38,16 @@ describe('mining economics presentation', () => {
     })
   })
 
+  it('formats percentages with the requested locale', () => {
+    expect(formatMiningShareBps(1250, 'en-US')).toBe('12.5%')
+    expect(formatMiningShareBps(1250, 'de-DE')).toBe('12,5\u00a0%')
+  })
+
   it('gracefully rejects absent and noncanonical values', () => {
     expect(formatMiningShareBps(10_001)).toBeNull()
     expect(
       presentMiningPolicy({
         maxBlocksInCurrentWindow: -1,
-        miningEligible: null,
       }),
     ).toEqual({
       mode: 'UNKNOWN',

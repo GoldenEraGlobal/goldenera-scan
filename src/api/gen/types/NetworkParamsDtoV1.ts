@@ -61,12 +61,10 @@ export type NetworkParamsDtoV1 = {
    */
   currentValidatorCount?: number
   /**
-   * @description Configured validator mining window at the canonical head
-   * @type integer,null, int64
+   * @type integer | undefined, int64
    */
-  validatorMiningWindowBlocks?: number | null
+  validatorMiningWindowBlocks?: number
   /**
-   * @description Current number of validators with effective UNLIMITED policy
    * @type integer | undefined, int64
    */
   currentUnlimitedValidatorCount?: number

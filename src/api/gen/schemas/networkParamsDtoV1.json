@@ -13,16 +13,8 @@
     "updatedByTxHash": { "type": "string" },
     "currentAuthorityCount": { "type": "integer", "format": "int64" },
     "currentValidatorCount": { "type": "integer", "format": "int64" },
-    "validatorMiningWindowBlocks": {
-      "type": ["integer", "null"],
-      "format": "int64",
-      "description": "Configured validator mining window at the canonical head"
-    },
-    "currentUnlimitedValidatorCount": {
-      "type": "integer",
-      "format": "int64",
-      "description": "Current number of validators with effective UNLIMITED policy"
-    },
+    "validatorMiningWindowBlocks": { "type": "integer", "format": "int64" },
+    "currentUnlimitedValidatorCount": { "type": "integer", "format": "int64" },
     "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
     "updatedAtTimestamp": { "type": "string", "format": "date-time" }
   },

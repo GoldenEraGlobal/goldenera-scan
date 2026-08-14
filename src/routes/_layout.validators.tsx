@@ -6,7 +6,7 @@ import * as m from '@/paraglide/messages'
 
 export const Route = createFileRoute('/_layout/validators')({
   loader: ({ context }) =>
-    context.queryClient.ensureQueryData(miningEconomicsQueryOptions()),
+    context.queryClient.prefetchQuery(miningEconomicsQueryOptions()),
   component: ValidatorsPage,
   head: () => ({
     meta: [

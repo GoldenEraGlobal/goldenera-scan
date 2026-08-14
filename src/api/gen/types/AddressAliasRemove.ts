@@ -5,6 +5,14 @@
 
 import type { TxPayloadDtoV1 } from './TxPayloadDtoV1.ts'
 
+export const addressAliasRemovePayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type AddressAliasRemovePayloadVersionEnumKey =
+  (typeof addressAliasRemovePayloadVersionEnum)[keyof typeof addressAliasRemovePayloadVersionEnum]
+
 /**
  * @description Remove address alias payload
  */
@@ -20,4 +28,9 @@ export type AddressAliasRemove = (TxPayloadDtoV1 & {
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: AddressAliasRemovePayloadVersionEnumKey
 }

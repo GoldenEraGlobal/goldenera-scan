@@ -20,13 +20,18 @@
     }
   },
   "properties": {
+    "payloadVersion": {
+      "type": "string",
+      "description": "Version of the concrete payload schema",
+      "enum": ["V1", "V2"]
+    },
     "payloadType": {
       "type": "string",
       "description": "Payload type discriminator",
       "example": "BIP_ADDRESS_ALIAS_ADD"
     }
   },
-  "required": ["payloadType"],
+  "required": ["payloadType", "payloadVersion"],
   "x-readme-ref-name": "TxPayloadDtoV1",
   "oneOf": [
     {
@@ -53,13 +58,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -71,7 +81,7 @@
         }
       ],
       "description": "Add address alias payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "AddressAliasAdd"
     },
     {
@@ -98,19 +108,24 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         { "type": "object", "properties": { "alias": { "type": "string" } } }
       ],
       "description": "Remove address alias payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "AddressAliasRemove"
     },
     {
@@ -137,19 +152,24 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         { "type": "object", "properties": { "address": { "type": "string" } } }
       ],
       "description": "Add authority payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "AuthorityAdd"
     },
     {
@@ -176,19 +196,24 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         { "type": "object", "properties": { "address": { "type": "string" } } }
       ],
       "description": "Remove authority payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "AuthorityRemove"
     },
     {
@@ -215,13 +240,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -237,7 +267,7 @@
         }
       ],
       "description": "Add validator payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "ValidatorAdd"
     },
     {
@@ -264,19 +294,24 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         { "type": "object", "properties": { "address": { "type": "string" } } }
       ],
       "description": "Remove validator payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "ValidatorRemove"
     },
     {
@@ -303,13 +338,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -325,7 +365,7 @@
         }
       ],
       "description": "Set validator mining policy payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "ValidatorMiningPolicySet"
     },
     {
@@ -352,13 +392,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -379,7 +424,7 @@
         }
       ],
       "description": "Set network parameters payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "NetworkParamsSet"
     },
     {
@@ -406,13 +451,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -425,7 +475,7 @@
         }
       ],
       "description": "Burn tokens payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "TokenBurn"
     },
     {
@@ -452,13 +502,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -475,7 +530,7 @@
         }
       ],
       "description": "Create token payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "TokenCreate"
     },
     {
@@ -502,13 +557,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -521,7 +581,7 @@
         }
       ],
       "description": "Mint tokens payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "TokenMint"
     },
     {
@@ -548,13 +608,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -569,7 +634,7 @@
         }
       ],
       "description": "Update token payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "TokenUpdate"
     },
     {
@@ -596,13 +661,18 @@
             }
           },
           "properties": {
+            "payloadVersion": {
+              "type": "string",
+              "description": "Version of the concrete payload schema",
+              "enum": ["V1", "V2"]
+            },
             "payloadType": {
               "type": "string",
               "description": "Payload type discriminator",
               "example": "BIP_ADDRESS_ALIAS_ADD"
             }
           },
-          "required": ["payloadType"],
+          "required": ["payloadType", "payloadVersion"],
           "x-readme-ref-name": "TxPayloadDtoV1"
         },
         {
@@ -613,7 +683,7 @@
         }
       ],
       "description": "BIP vote payload",
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "Vote"
     }
   ]

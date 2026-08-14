@@ -13,6 +13,14 @@ export const validatorAddMiningLimitModeEnum = {
 export type ValidatorAddMiningLimitModeEnumKey =
   (typeof validatorAddMiningLimitModeEnum)[keyof typeof validatorAddMiningLimitModeEnum]
 
+export const validatorAddPayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type ValidatorAddPayloadVersionEnumKey =
+  (typeof validatorAddPayloadVersionEnum)[keyof typeof validatorAddPayloadVersionEnum]
+
 /**
  * @description Add validator payload
  */
@@ -36,4 +44,9 @@ export type ValidatorAdd = (TxPayloadDtoV1 & {
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: ValidatorAddPayloadVersionEnumKey
 }

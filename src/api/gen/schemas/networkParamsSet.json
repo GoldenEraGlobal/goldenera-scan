@@ -22,13 +22,18 @@
         }
       },
       "properties": {
+        "payloadVersion": {
+          "type": "string",
+          "description": "Version of the concrete payload schema",
+          "enum": ["V1", "V2"]
+        },
         "payloadType": {
           "type": "string",
           "description": "Payload type discriminator",
           "example": "BIP_ADDRESS_ALIAS_ADD"
         }
       },
-      "required": ["payloadType"],
+      "required": ["payloadType", "payloadVersion"],
       "x-readme-ref-name": "TxPayloadDtoV1"
     },
     {
@@ -46,6 +51,6 @@
     }
   ],
   "description": "Set network parameters payload",
-  "required": ["payloadType"],
+  "required": ["payloadType", "payloadVersion"],
   "x-readme-ref-name": "NetworkParamsSet"
 }

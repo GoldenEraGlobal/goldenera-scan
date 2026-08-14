@@ -1,5 +1,0 @@
-{
-  "type": "object",
-  "properties": { "rawTxDataInHex": { "type": "string" } },
-  "x-readme-ref-name": "MempoolSubmitTxDtoV1"
-}

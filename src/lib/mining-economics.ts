@@ -17,14 +17,19 @@ const finiteNonNegative = (value: number | null | undefined): number | null =>
 
 export function formatMiningShareBps(
   value: number | null | undefined,
+  locale = 'en-US',
 ): string | null {
   const bps = finiteNonNegative(value)
   if (bps === null || bps > 10_000) return null
-  return `${(bps / 100).toLocaleString('en-US', { maximumFractionDigits: 2 })}%`
+  return new Intl.NumberFormat(locale, {
+    style: 'percent',
+    maximumFractionDigits: 2,
+  }).format(bps / 10_000)
 }
 
 export function presentMiningPolicy(
   validator: ValidatorDtoV1,
+  locale = 'en-US',
 ): MiningPolicyPresentation {
   const mode =
     validator.miningLimitMode === 'UNLIMITED' ||
@@ -42,7 +47,7 @@ export function presentMiningPolicy(
     // UNLIMITED uses a zero BPS sentinel. It must never be presented as a zero allowance.
     sharePercent:
       mode === 'LIMITED'
-        ? formatMiningShareBps(validator.maxMiningShareBps)
+        ? formatMiningShareBps(validator.maxMiningShareBps, locale)
         : null,
     source,
     quota:

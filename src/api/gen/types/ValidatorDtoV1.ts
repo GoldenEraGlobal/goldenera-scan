@@ -12,8 +12,8 @@ export type ValidatorDtoV1VersionEnumKey =
   (typeof validatorDtoV1VersionEnum)[keyof typeof validatorDtoV1VersionEnum]
 
 export const validatorDtoV1MiningLimitModeEnum = {
-  UNLIMITED: 'UNLIMITED',
   LIMITED: 'LIMITED',
+  UNLIMITED: 'UNLIMITED',
 } as const
 
 export type ValidatorDtoV1MiningLimitModeEnumKey =
@@ -49,50 +49,43 @@ export type ValidatorDtoV1 = {
    */
   createdAtTimestamp?: string
   /**
-   * @description Effective mining limit mode at the canonical head
    * @type string | undefined
    */
   miningLimitMode?: ValidatorDtoV1MiningLimitModeEnumKey
   /**
-   * @description Whether the effective policy is implicit legacy behavior or explicit V2 state
    * @type string | undefined
    */
   miningPolicySource?: ValidatorDtoV1MiningPolicySourceEnumKey
   /**
-   * @description Maximum mining share in basis points; the value is not a limit when mode is UNLIMITED
    * @type integer | undefined, int64
    */
   maxMiningShareBps?: number
   /**
-   * @description Current canonical-head quota for a limited validator
-   * @type integer,null, int64
+   * @type integer | undefined, int64
    */
-  maxBlocksInCurrentWindow?: number | null
+  maxBlocksInCurrentWindow?: number
   /**
-   * @description Blocks mined in the current canonical-head window
-   * @type integer,null, int64
+   * @type integer | undefined, int64
    */
-  blocksMinedInCurrentWindow?: number | null
+  blocksMinedInCurrentWindow?: number
   /**
-   * @description Remaining current-window quota at the canonical head
-   * @type integer,null, int64
+   * @type integer | undefined, int64
    */
-  remainingBlocksInCurrentWindow?: number | null
+  remainingBlocksInCurrentWindow?: number
   /**
-   * @description Informational eligibility derived from the canonical head
-   * @type boolean,null
+   * @type boolean | undefined
    */
-  miningEligible?: boolean | null
+  miningEligible?: boolean
   /**
-   * @type string,null
+   * @type string | undefined
    */
-  policyUpdatedByTxHash?: string | null
+  policyUpdatedByTxHash?: string
   /**
-   * @type integer,null, int64
+   * @type integer | undefined, int64
    */
-  policyUpdatedAtBlockHeight?: number | null
+  policyUpdatedAtBlockHeight?: number
   /**
-   * @type string,null, date-time
+   * @type string | undefined, date-time
    */
-  policyUpdatedAtTimestamp?: string | null
+  policyUpdatedAtTimestamp?: string
 }

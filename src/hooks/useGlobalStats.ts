@@ -2,22 +2,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryOptions } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
-import { getLatestBlockHeight } from "@/api/gen/clients/getLatestBlockHeight";
+import { apiV1BlockGetCount } from "@/api/gen/clients/apiV1BlockGetCount";
 import { apiV1TxGetCount } from "@/api/gen/clients/apiV1TxGetCount";
-import { getMempoolTransactionSize } from "@/api/gen/clients/getMempoolTransactionSize";
+import { apiV1MemTransferGetCount } from "@/api/gen/clients/apiV1MemTransferGetCount";
 import { getClient } from "@/api/client";
 
 export const getGlobalStats = createServerFn().handler(async () => {
     try {
         const client = getClient();
-        const [latestBlock, txCount, mempoolSize] = await Promise.all([
-            getLatestBlockHeight({ client }),
+        const [blockCount, txCount, mempoolSize] = await Promise.all([
+            apiV1BlockGetCount({ client }),
             apiV1TxGetCount({ client }),
-            getMempoolTransactionSize({ client }),
+            apiV1MemTransferGetCount({ client }),
         ]);
 
         return {
-            latestBlock: Number(latestBlock),
+            latestBlock: Math.max(0, Number(blockCount) - 1),
             txCount: Number(txCount),
             mempoolSize: Number(mempoolSize),
         };
