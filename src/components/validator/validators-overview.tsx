@@ -231,7 +231,7 @@ export function ValidatorsOverview() {
             </Button>
           </div>
         </CardHeader>
-        <CardContent className="grid gap-5 sm:grid-cols-3">
+        <CardContent className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="text-xs text-muted-foreground">
               {m.validators_window()}
@@ -241,6 +241,18 @@ export function ValidatorsOverview() {
                 <Skeleton className="h-7 w-20" />
               ) : (
                 value(params?.validatorMiningWindowBlocks, locale)
+              )}
+            </p>
+          </div>
+          <div>
+            <p className="text-xs text-muted-foreground">
+              {m.validators_reward_vesting()}
+            </p>
+            <p className="text-xl font-bold">
+              {isLoading ? (
+                <Skeleton className="h-7 w-20" />
+              ) : (
+                value(params?.miningRewardVestingBlocks, locale)
               )}
             </p>
           </div>

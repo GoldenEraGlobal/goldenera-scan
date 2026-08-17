@@ -14,6 +14,7 @@ import type {
   ApiV1AccountNonceGetCount500,
 } from '../types/ApiV1AccountNonceGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1AccountNonceGetCountUrl() {
  * {@link /api/explorer/v1/account/nonce/count}
  */
 export async function apiV1AccountNonceGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

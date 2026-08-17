@@ -46,7 +46,8 @@
         "minDifficulty": { "type": "string" },
         "minTxBaseFee": { "type": "string" },
         "minTxByteFee": { "type": "string" },
-        "validatorMiningWindowBlocks": { "type": "integer", "format": "int64" }
+        "validatorMiningWindowBlocks": { "type": "integer", "format": "int64" },
+        "miningRewardVestingBlocks": { "type": "integer", "format": "int64" }
       }
     }
   ],

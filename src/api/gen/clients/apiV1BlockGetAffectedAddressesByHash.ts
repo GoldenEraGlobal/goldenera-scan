@@ -15,6 +15,7 @@ import type {
   ApiV1BlockGetAffectedAddressesByHash500,
 } from '../types/ApiV1BlockGetAffectedAddressesByHash.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -34,7 +35,7 @@ function getApiV1BlockGetAffectedAddressesByHashUrl(
  */
 export async function apiV1BlockGetAffectedAddressesByHash(
   hash: ApiV1BlockGetAffectedAddressesByHashPathParams['hash'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

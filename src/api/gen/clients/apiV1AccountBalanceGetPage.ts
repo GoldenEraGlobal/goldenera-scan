@@ -15,6 +15,7 @@ import type {
   ApiV1AccountBalanceGetPage500,
 } from '../types/ApiV1AccountBalanceGetPage.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1AccountBalanceGetPageUrl() {
  */
 export async function apiV1AccountBalanceGetPage(
   params: ApiV1AccountBalanceGetPageQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

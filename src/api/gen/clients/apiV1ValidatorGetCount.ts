@@ -14,6 +14,7 @@ import type {
   ApiV1ValidatorGetCount500,
 } from '../types/ApiV1ValidatorGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1ValidatorGetCountUrl() {
  * {@link /api/explorer/v1/validator/count}
  */
 export async function apiV1ValidatorGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

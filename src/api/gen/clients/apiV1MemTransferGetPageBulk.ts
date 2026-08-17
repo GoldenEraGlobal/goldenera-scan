@@ -15,6 +15,7 @@ import type {
   ApiV1MemTransferGetPageBulk500,
 } from '../types/ApiV1MemTransferGetPageBulk.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -31,9 +32,9 @@ function getApiV1MemTransferGetPageBulkUrl() {
  * {@link /api/explorer/v1/mem-transfer/page/bulk}
  */
 export async function apiV1MemTransferGetPageBulk(
-  data?: ApiV1MemTransferGetPageBulkMutationRequest,
+  data: ApiV1MemTransferGetPageBulkMutationRequest,
   config: Partial<RequestConfig<ApiV1MemTransferGetPageBulkMutationRequest>> & {
-    client?: typeof fetch
+    client?: Client
   } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config

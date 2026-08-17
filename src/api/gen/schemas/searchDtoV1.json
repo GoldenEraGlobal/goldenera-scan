@@ -317,6 +317,10 @@
                       "validatorMiningWindowBlocks": {
                         "type": "integer",
                         "format": "int64"
+                      },
+                      "miningRewardVestingBlocks": {
+                        "type": "integer",
+                        "format": "int64"
                       }
                     }
                   }
@@ -1057,6 +1061,10 @@
                       "validatorMiningWindowBlocks": {
                         "type": "integer",
                         "format": "int64"
+                      },
+                      "miningRewardVestingBlocks": {
+                        "type": "integer",
+                        "format": "int64"
                       }
                     }
                   }
@@ -1502,9 +1510,12 @@
       "items": {
         "type": "object",
         "properties": {
-          "version": { "type": "string", "enum": ["V1"] },
+          "version": { "type": "string", "enum": ["V1", "V2"] },
           "address": { "type": "string" },
           "balance": { "type": "string" },
+          "lockedMiningReward": { "type": "string" },
+          "pendingMiningRewardCancellation": { "type": "string" },
+          "spendableBalance": { "type": "string" },
           "tokenAddress": { "type": "string" },
           "createdAtBlockHeight": { "type": "integer", "format": "int64" },
           "updatedAtBlockHeight": { "type": "integer", "format": "int64" },

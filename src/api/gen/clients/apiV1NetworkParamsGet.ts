@@ -14,6 +14,7 @@ import type {
   ApiV1NetworkParamsGet500,
 } from '../types/ApiV1NetworkParamsGet.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -27,7 +28,7 @@ function getApiV1NetworkParamsGetUrl() {
  * {@link /api/explorer/v1/network-params}
  */
 export async function apiV1NetworkParamsGet(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

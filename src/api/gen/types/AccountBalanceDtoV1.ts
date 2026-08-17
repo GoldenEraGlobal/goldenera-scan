@@ -5,6 +5,7 @@
 
 export const accountBalanceDtoV1VersionEnum = {
   V1: 'V1',
+  V2: 'V2',
 } as const
 
 export type AccountBalanceDtoV1VersionEnumKey =
@@ -23,6 +24,18 @@ export type AccountBalanceDtoV1 = {
    * @type string | undefined
    */
   balance?: string
+  /**
+   * @type string | undefined
+   */
+  lockedMiningReward?: string
+  /**
+   * @type string | undefined
+   */
+  pendingMiningRewardCancellation?: string
+  /**
+   * @type string | undefined
+   */
+  spendableBalance?: string
   /**
    * @type string | undefined
    */

@@ -15,6 +15,7 @@ import type {
   ApiV1ValidatorGetPageBulk500,
 } from '../types/ApiV1ValidatorGetPageBulk.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -31,9 +32,9 @@ function getApiV1ValidatorGetPageBulkUrl() {
  * {@link /api/explorer/v1/validator/page/bulk}
  */
 export async function apiV1ValidatorGetPageBulk(
-  data?: ApiV1ValidatorGetPageBulkMutationRequest,
+  data: ApiV1ValidatorGetPageBulkMutationRequest,
   config: Partial<RequestConfig<ApiV1ValidatorGetPageBulkMutationRequest>> & {
-    client?: typeof fetch
+    client?: Client
   } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config

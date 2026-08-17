@@ -14,6 +14,7 @@ import type {
   ApiV1TransferGetCount500,
 } from '../types/ApiV1TransferGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -27,7 +28,7 @@ function getApiV1TransferGetCountUrl() {
  * {@link /api/explorer/v1/transfer/count}
  */
 export async function apiV1TransferGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

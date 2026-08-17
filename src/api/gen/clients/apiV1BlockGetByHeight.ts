@@ -15,6 +15,7 @@ import type {
   ApiV1BlockGetByHeight500,
 } from '../types/ApiV1BlockGetByHeight.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -34,7 +35,7 @@ function getApiV1BlockGetByHeightUrl(
  */
 export async function apiV1BlockGetByHeight(
   height: ApiV1BlockGetByHeightPathParams['height'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

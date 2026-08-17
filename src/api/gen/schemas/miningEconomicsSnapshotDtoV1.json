@@ -20,6 +20,7 @@
         "currentAuthorityCount": { "type": "integer", "format": "int64" },
         "currentValidatorCount": { "type": "integer", "format": "int64" },
         "validatorMiningWindowBlocks": { "type": "integer", "format": "int64" },
+        "miningRewardVestingBlocks": { "type": "integer", "format": "int64" },
         "currentUnlimitedValidatorCount": {
           "type": "integer",
           "format": "int64"

@@ -14,6 +14,7 @@ import type {
   ApiV1AddressAliasGetCount500,
 } from '../types/ApiV1AddressAliasGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1AddressAliasGetCountUrl() {
  * {@link /api/explorer/v1/address-alias/count}
  */
 export async function apiV1AddressAliasGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

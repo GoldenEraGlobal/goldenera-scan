@@ -15,6 +15,7 @@ import type {
   ApiV1TransferGetPageBulk500,
 } from '../types/ApiV1TransferGetPageBulk.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -31,9 +32,9 @@ function getApiV1TransferGetPageBulkUrl() {
  * {@link /api/explorer/v1/transfer/page/bulk}
  */
 export async function apiV1TransferGetPageBulk(
-  data?: ApiV1TransferGetPageBulkMutationRequest,
+  data: ApiV1TransferGetPageBulkMutationRequest,
   config: Partial<RequestConfig<ApiV1TransferGetPageBulkMutationRequest>> & {
-    client?: typeof fetch
+    client?: Client
   } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config

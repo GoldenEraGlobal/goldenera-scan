@@ -71,4 +71,8 @@ export type TransferDtoV1 = {
    * @type string | undefined
    */
   message?: string
+  /**
+   * @type integer | undefined, int64
+   */
+  unlockBlockHeight?: number
 }

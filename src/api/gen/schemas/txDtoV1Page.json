@@ -291,6 +291,10 @@
                       "validatorMiningWindowBlocks": {
                         "type": "integer",
                         "format": "int64"
+                      },
+                      "miningRewardVestingBlocks": {
+                        "type": "integer",
+                        "format": "int64"
                       }
                     }
                   }

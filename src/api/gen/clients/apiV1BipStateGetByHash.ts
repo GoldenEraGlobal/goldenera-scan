@@ -15,6 +15,7 @@ import type {
   ApiV1BipStateGetByHash500,
 } from '../types/ApiV1BipStateGetByHash.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -34,7 +35,7 @@ function getApiV1BipStateGetByHashUrl(
  */
 export async function apiV1BipStateGetByHash(
   hash: ApiV1BipStateGetByHashPathParams['hash'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

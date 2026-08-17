@@ -67,6 +67,10 @@ export type NetworkParamsDtoV1 = {
   /**
    * @type integer | undefined, int64
    */
+  miningRewardVestingBlocks?: number
+  /**
+   * @type integer | undefined, int64
+   */
   currentUnlimitedValidatorCount?: number
   /**
    * @type integer | undefined, int64

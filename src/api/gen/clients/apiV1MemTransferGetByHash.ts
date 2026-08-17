@@ -15,6 +15,7 @@ import type {
   ApiV1MemTransferGetByHash500,
 } from '../types/ApiV1MemTransferGetByHash.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -34,7 +35,7 @@ function getApiV1MemTransferGetByHashUrl(
  */
 export async function apiV1MemTransferGetByHash(
   hash: ApiV1MemTransferGetByHashPathParams['hash'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

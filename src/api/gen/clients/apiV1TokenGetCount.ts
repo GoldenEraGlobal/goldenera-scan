@@ -14,6 +14,7 @@ import type {
   ApiV1TokenGetCount500,
 } from '../types/ApiV1TokenGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -27,7 +28,7 @@ function getApiV1TokenGetCountUrl() {
  * {@link /api/explorer/v1/token/count}
  */
 export async function apiV1TokenGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

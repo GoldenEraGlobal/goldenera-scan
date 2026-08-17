@@ -15,6 +15,7 @@ import type {
   ApiV1AddressAliasGetPage500,
 } from '../types/ApiV1AddressAliasGetPage.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1AddressAliasGetPageUrl() {
  */
 export async function apiV1AddressAliasGetPage(
   params: ApiV1AddressAliasGetPageQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

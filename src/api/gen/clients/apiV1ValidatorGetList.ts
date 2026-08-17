@@ -14,6 +14,7 @@ import type {
   ApiV1ValidatorGetList500,
 } from '../types/ApiV1ValidatorGetList.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -27,7 +28,7 @@ function getApiV1ValidatorGetListUrl() {
  * {@link /api/explorer/v1/validator/list}
  */
 export async function apiV1ValidatorGetList(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

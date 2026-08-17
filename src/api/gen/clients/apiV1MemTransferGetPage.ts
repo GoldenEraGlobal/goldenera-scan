@@ -15,6 +15,7 @@ import type {
   ApiV1MemTransferGetPage500,
 } from '../types/ApiV1MemTransferGetPage.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1MemTransferGetPageUrl() {
  */
 export async function apiV1MemTransferGetPage(
   params: ApiV1MemTransferGetPageQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 
