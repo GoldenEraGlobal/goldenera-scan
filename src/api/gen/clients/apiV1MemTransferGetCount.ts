@@ -14,6 +14,7 @@ import type {
   ApiV1MemTransferGetCount500,
 } from '../types/ApiV1MemTransferGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1MemTransferGetCountUrl() {
  * {@link /api/explorer/v1/mem-transfer/count}
  */
 export async function apiV1MemTransferGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

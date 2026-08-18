@@ -27,6 +27,7 @@ export function Header() {
                         <Link to="/mempool" className="hover:text-primary transition-colors [&.active]:text-primary">{m.header_mempool()}</Link>
                         <Link to="/blocks" className="hover:text-primary transition-colors [&.active]:text-primary">{m.header_blocks()}</Link>
                         <Link to="/accounts" className="hover:text-primary transition-colors [&.active]:text-primary">{m.header_accounts()}</Link>
+                        <Link to="/validators" className="hover:text-primary transition-colors [&.active]:text-primary">{m.header_validators()}</Link>
                     </nav>
 
                     <div className="flex items-center gap-2">
@@ -66,6 +67,7 @@ export function Header() {
                             <Link to="/mempool" className="py-2 border-b hover:text-primary [&.active]:text-primary" onClick={() => setIsMobileMenuOpen(false)}>{m.header_mempool()}</Link>
                             <Link to="/blocks" className="py-2 border-b hover:text-primary [&.active]:text-primary" onClick={() => setIsMobileMenuOpen(false)}>{m.header_blocks()}</Link>
                             <Link to="/accounts" className="py-2 border-b hover:text-primary [&.active]:text-primary" onClick={() => setIsMobileMenuOpen(false)}>{m.header_accounts()}</Link>
+                            <Link to="/validators" className="py-2 border-b hover:text-primary [&.active]:text-primary" onClick={() => setIsMobileMenuOpen(false)}>{m.header_validators()}</Link>
                         </nav>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ import type {
   ApiV1AccountBalanceGetPageBulk500,
 } from '../types/ApiV1AccountBalanceGetPageBulk.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -31,10 +32,10 @@ function getApiV1AccountBalanceGetPageBulkUrl() {
  * {@link /api/explorer/v1/account/balance/page/bulk}
  */
 export async function apiV1AccountBalanceGetPageBulk(
-  data?: ApiV1AccountBalanceGetPageBulkMutationRequest,
+  data: ApiV1AccountBalanceGetPageBulkMutationRequest,
   config: Partial<
     RequestConfig<ApiV1AccountBalanceGetPageBulkMutationRequest>
-  > & { client?: typeof fetch } = {},
+  > & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

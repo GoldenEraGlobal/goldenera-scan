@@ -12,6 +12,14 @@ export const voteTypeEnum = {
 
 export type VoteTypeEnumKey = (typeof voteTypeEnum)[keyof typeof voteTypeEnum]
 
+export const votePayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type VotePayloadVersionEnumKey =
+  (typeof votePayloadVersionEnum)[keyof typeof votePayloadVersionEnum]
+
 /**
  * @description BIP vote payload
  */
@@ -27,4 +35,9 @@ export type Vote = (TxPayloadDtoV1 & {
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: VotePayloadVersionEnumKey
 }

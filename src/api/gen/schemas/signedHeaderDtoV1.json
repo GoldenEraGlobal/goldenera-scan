@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "blockHash": { "type": "string" },
+    "signature": { "type": "string" },
+    "canonicalSignedHeader": { "type": "string" }
+  },
+  "x-readme-ref-name": "SignedHeaderDtoV1"
+}

@@ -40,7 +40,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${LISTEN_PORT:-3000}:3000"
+      - '${LISTEN_PORT:-3000}:3000'
     networks:
       - goldenera_network
 
@@ -53,7 +53,6 @@ networks:
 ### 3. Configure Environment
 
 Create a `.env` file with your node connection details:
-
 
 ```dotenv
 # Node Connection
@@ -93,6 +92,7 @@ The application is built using modern, type-safe technologies:
 ### Local Setup
 
 1. Install dependencies:
+
    ```bash
    pnpm install
    ```
@@ -101,6 +101,24 @@ The application is built using modern, type-safe technologies:
    ```bash
    pnpm dev
    ```
+
+### Refresh the Explorer API client
+
+Build the local node image first, then refresh the checked-in OpenAPI document
+and generated TypeScript client from the running image:
+
+```bash
+cd ../goldenera-node
+IMAGE_TAG=goldenera-node:sandbox-local ./scripts/build-sandbox-image.sh
+
+cd ../goldenera-scan
+pnpm update:api
+```
+
+The update command starts isolated node and PostgreSQL containers, follows the
+node logs until Spring is ready, downloads `/v3/api-docs/Explorer%20API`, runs
+the API generator, and removes all temporary Docker resources. Override
+`NODE_IMAGE` or `POSTGRES_IMAGE` when using different local image names.
 
 ---
 

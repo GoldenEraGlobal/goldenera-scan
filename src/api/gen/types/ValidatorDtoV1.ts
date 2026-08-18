@@ -5,10 +5,27 @@
 
 export const validatorDtoV1VersionEnum = {
   V1: 'V1',
+  V2: 'V2',
 } as const
 
 export type ValidatorDtoV1VersionEnumKey =
   (typeof validatorDtoV1VersionEnum)[keyof typeof validatorDtoV1VersionEnum]
+
+export const validatorDtoV1MiningLimitModeEnum = {
+  LIMITED: 'LIMITED',
+  UNLIMITED: 'UNLIMITED',
+} as const
+
+export type ValidatorDtoV1MiningLimitModeEnumKey =
+  (typeof validatorDtoV1MiningLimitModeEnum)[keyof typeof validatorDtoV1MiningLimitModeEnum]
+
+export const validatorDtoV1MiningPolicySourceEnum = {
+  LEGACY_DEFAULT: 'LEGACY_DEFAULT',
+  EXPLICIT: 'EXPLICIT',
+} as const
+
+export type ValidatorDtoV1MiningPolicySourceEnumKey =
+  (typeof validatorDtoV1MiningPolicySourceEnum)[keyof typeof validatorDtoV1MiningPolicySourceEnum]
 
 export type ValidatorDtoV1 = {
   /**
@@ -31,4 +48,44 @@ export type ValidatorDtoV1 = {
    * @type string | undefined, date-time
    */
   createdAtTimestamp?: string
+  /**
+   * @type string | undefined
+   */
+  miningLimitMode?: ValidatorDtoV1MiningLimitModeEnumKey
+  /**
+   * @type string | undefined
+   */
+  miningPolicySource?: ValidatorDtoV1MiningPolicySourceEnumKey
+  /**
+   * @type integer | undefined, int64
+   */
+  maxMiningShareBps?: number
+  /**
+   * @type integer | undefined, int64
+   */
+  maxBlocksInCurrentWindow?: number
+  /**
+   * @type integer | undefined, int64
+   */
+  blocksMinedInCurrentWindow?: number
+  /**
+   * @type integer | undefined, int64
+   */
+  remainingBlocksInCurrentWindow?: number
+  /**
+   * @type boolean | undefined
+   */
+  miningEligible?: boolean
+  /**
+   * @type string | undefined
+   */
+  policyUpdatedByTxHash?: string
+  /**
+   * @type integer | undefined, int64
+   */
+  policyUpdatedAtBlockHeight?: number
+  /**
+   * @type string | undefined, date-time
+   */
+  policyUpdatedAtTimestamp?: string
 }

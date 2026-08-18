@@ -15,6 +15,7 @@ import type {
   ApiV1BlockGetPage500,
 } from '../types/ApiV1BlockGetPage.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1BlockGetPageUrl() {
  */
 export async function apiV1BlockGetPage(
   params: ApiV1BlockGetPageQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

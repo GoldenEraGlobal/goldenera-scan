@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "version": { "type": "string", "enum": ["V1"] },
+    "version": { "type": "string", "enum": ["V1", "V2"] },
     "blockReward": { "type": "string" },
     "blockRewardPoolAddress": { "type": "string" },
     "targetMiningTimeMs": { "type": "integer", "format": "int64" },
@@ -13,6 +13,9 @@
     "updatedByTxHash": { "type": "string" },
     "currentAuthorityCount": { "type": "integer", "format": "int64" },
     "currentValidatorCount": { "type": "integer", "format": "int64" },
+    "validatorMiningWindowBlocks": { "type": "integer", "format": "int64" },
+    "miningRewardVestingBlocks": { "type": "integer", "format": "int64" },
+    "currentUnlimitedValidatorCount": { "type": "integer", "format": "int64" },
     "updatedAtBlockHeight": { "type": "integer", "format": "int64" },
     "updatedAtTimestamp": { "type": "string", "format": "date-time" }
   },

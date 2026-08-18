@@ -14,6 +14,7 @@ import type {
   ApiV1AuthorityGetList500,
 } from '../types/ApiV1AuthorityGetList.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -27,7 +28,7 @@ function getApiV1AuthorityGetListUrl() {
  * {@link /api/explorer/v1/authority/list}
  */
 export async function apiV1AuthorityGetList(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

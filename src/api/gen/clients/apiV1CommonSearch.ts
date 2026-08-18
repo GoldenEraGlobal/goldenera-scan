@@ -15,6 +15,7 @@ import type {
   ApiV1CommonSearch500,
 } from '../types/ApiV1CommonSearch.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -29,7 +30,7 @@ function getApiV1CommonSearchUrl() {
  */
 export async function apiV1CommonSearch(
   params: ApiV1CommonSearchQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

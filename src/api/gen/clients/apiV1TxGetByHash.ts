@@ -15,6 +15,7 @@ import type {
   ApiV1TxGetByHash500,
 } from '../types/ApiV1TxGetByHash.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1TxGetByHashUrl(hash: ApiV1TxGetByHashPathParams['hash']) {
  */
 export async function apiV1TxGetByHash(
   hash: ApiV1TxGetByHashPathParams['hash'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

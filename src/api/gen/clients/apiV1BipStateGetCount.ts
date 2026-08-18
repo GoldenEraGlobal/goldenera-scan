@@ -14,6 +14,7 @@ import type {
   ApiV1BipStateGetCount500,
 } from '../types/ApiV1BipStateGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1BipStateGetCountUrl() {
  * {@link /api/explorer/v1/bip-state/count}
  */
 export async function apiV1BipStateGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

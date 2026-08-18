@@ -14,6 +14,7 @@ import type {
   ApiV1AuthorityGetCount500,
 } from '../types/ApiV1AuthorityGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1AuthorityGetCountUrl() {
  * {@link /api/explorer/v1/authority/count}
  */
 export async function apiV1AuthorityGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

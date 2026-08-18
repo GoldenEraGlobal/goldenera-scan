@@ -15,6 +15,7 @@ import type {
   ApiV1BipStateGetBulk500,
 } from '../types/ApiV1BipStateGetBulk.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -31,9 +32,9 @@ function getApiV1BipStateGetBulkUrl() {
  * {@link /api/explorer/v1/bip-state/bulk}
  */
 export async function apiV1BipStateGetBulk(
-  data?: ApiV1BipStateGetBulkMutationRequest,
+  data: ApiV1BipStateGetBulkMutationRequest,
   config: Partial<RequestConfig<ApiV1BipStateGetBulkMutationRequest>> & {
-    client?: typeof fetch
+    client?: Client
   } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config

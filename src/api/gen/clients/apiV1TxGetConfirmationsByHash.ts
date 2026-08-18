@@ -15,6 +15,7 @@ import type {
   ApiV1TxGetConfirmationsByHash500,
 } from '../types/ApiV1TxGetConfirmationsByHash.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -34,7 +35,7 @@ function getApiV1TxGetConfirmationsByHashUrl(
  */
 export async function apiV1TxGetConfirmationsByHash(
   hash: ApiV1TxGetConfirmationsByHashPathParams['hash'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

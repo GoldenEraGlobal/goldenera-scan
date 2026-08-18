@@ -15,6 +15,7 @@ import type {
   ApiV1TransferGetById500,
 } from '../types/ApiV1TransferGetById.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1TransferGetByIdUrl(id: ApiV1TransferGetByIdPathParams['id']) {
  */
 export async function apiV1TransferGetById(
   id: ApiV1TransferGetByIdPathParams['id'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

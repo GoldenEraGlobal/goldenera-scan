@@ -5,6 +5,14 @@
 
 import type { TxPayloadDtoV1 } from './TxPayloadDtoV1.ts'
 
+export const networkParamsSetPayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type NetworkParamsSetPayloadVersionEnumKey =
+  (typeof networkParamsSetPayloadVersionEnum)[keyof typeof networkParamsSetPayloadVersionEnum]
+
 /**
  * @description Set network parameters payload
  */
@@ -40,8 +48,21 @@ export type NetworkParamsSet = (TxPayloadDtoV1 & {
    */
   minTxByteFee?: string
   /**
+   * @type integer | undefined, int64
+   */
+  validatorMiningWindowBlocks?: number
+  /**
+   * @type integer | undefined, int64
+   */
+  miningRewardVestingBlocks?: number
+  /**
    * @description Payload type discriminator
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: NetworkParamsSetPayloadVersionEnumKey
 }

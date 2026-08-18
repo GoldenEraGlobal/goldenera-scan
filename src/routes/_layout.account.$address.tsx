@@ -1,15 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { ShieldCheck, Wallet } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { AccountOverview } from '@/components/account/account-overview'
 import { TokenHoldingsTable } from '@/components/token/token-holdings-table'
 import { TxTable } from '@/components/tx/tx-table'
 import { CopyButton } from '@/components/ui/copy-button'
-import {
-  Wallet,
-  ShieldCheck,
-} from 'lucide-react'
-import * as m from "@/paraglide/messages"
+import * as m from '@/paraglide/messages'
 import { accountQueryOptions, useAccount } from '@/hooks/useAccount'
+import { nativeBalanceQueryOptions } from '@/hooks/useNativeBalance'
+import { miningRewardTranchesQueryOptions } from '@/hooks/useMiningRewardTranches'
+import { MiningRewardVesting } from '@/components/account/mining-reward-vesting'
 
 export const Route = createFileRoute('/_layout/account/$address')({
   component: AccountDetailPage,
@@ -17,16 +17,32 @@ export const Route = createFileRoute('/_layout/account/$address')({
     await context.queryClient.ensureQueryData(
       accountQueryOptions(params.address),
     )
+    await Promise.all([
+      context.queryClient.ensureQueryData(
+        nativeBalanceQueryOptions(params.address),
+      ),
+      context.queryClient.ensureQueryData(
+        miningRewardTranchesQueryOptions(params.address),
+      ),
+    ])
     return {
       APP_NAME: context.APP_NAME,
     }
   },
   head: ({ params, loaderData }) => ({
     meta: [
-      { title: m.meta_title_address_detail({ address: params.address, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }) },
+      {
+        title: m.meta_title_address_detail({
+          address: params.address,
+          appName: loaderData?.APP_NAME || 'GoldenEra Scan',
+        }),
+      },
       {
         name: 'description',
-        content: m.meta_description_address_detail({ address: params.address, appName: loaderData?.APP_NAME || 'GoldenEra Scan' }),
+        content: m.meta_description_address_detail({
+          address: params.address,
+          appName: loaderData?.APP_NAME || 'GoldenEra Scan',
+        }),
       },
     ],
   }),
@@ -46,7 +62,9 @@ function AccountDetailPage() {
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2">
-            <h1 className="text-xl md:text-2xl font-bold font-mono break-all">{address}</h1>
+            <h1 className="text-xl md:text-2xl font-bold font-mono break-all">
+              {address}
+            </h1>
             <CopyButton value={address} size="md" />
           </div>
           {stats?.authority && (
@@ -60,6 +78,8 @@ function AccountDetailPage() {
 
       {/* Unified Overview */}
       <AccountOverview address={address} />
+
+      <MiningRewardVesting address={address} />
 
       {/* Token Holdings Table */}
       <TokenHoldingsTable address={address} />

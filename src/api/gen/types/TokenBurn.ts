@@ -5,6 +5,14 @@
 
 import type { TxPayloadDtoV1 } from './TxPayloadDtoV1.ts'
 
+export const tokenBurnPayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type TokenBurnPayloadVersionEnumKey =
+  (typeof tokenBurnPayloadVersionEnum)[keyof typeof tokenBurnPayloadVersionEnum]
+
 /**
  * @description Burn tokens payload
  */
@@ -28,4 +36,9 @@ export type TokenBurn = (TxPayloadDtoV1 & {
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: TokenBurnPayloadVersionEnumKey
 }

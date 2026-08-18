@@ -22,7 +22,8 @@
           "amount": { "type": "string" },
           "fee": { "type": "string" },
           "nonce": { "type": "integer", "format": "int64" },
-          "message": { "type": "string" }
+          "message": { "type": "string" },
+          "unlockBlockHeight": { "type": "integer", "format": "int64" }
         },
         "x-readme-ref-name": "TransferDtoV1"
       }

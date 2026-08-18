@@ -14,6 +14,7 @@ import type {
   ApiV1AccountBalanceGetCount500,
 } from '../types/ApiV1AccountBalanceGetCount.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -30,7 +31,7 @@ function getApiV1AccountBalanceGetCountUrl() {
  * {@link /api/explorer/v1/account/balance/count}
  */
 export async function apiV1AccountBalanceGetCount(
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

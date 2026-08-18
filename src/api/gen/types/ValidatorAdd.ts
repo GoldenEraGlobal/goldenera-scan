@@ -5,6 +5,22 @@
 
 import type { TxPayloadDtoV1 } from './TxPayloadDtoV1.ts'
 
+export const validatorAddMiningLimitModeEnum = {
+  LIMITED: 'LIMITED',
+  UNLIMITED: 'UNLIMITED',
+} as const
+
+export type ValidatorAddMiningLimitModeEnumKey =
+  (typeof validatorAddMiningLimitModeEnum)[keyof typeof validatorAddMiningLimitModeEnum]
+
+export const validatorAddPayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type ValidatorAddPayloadVersionEnumKey =
+  (typeof validatorAddPayloadVersionEnum)[keyof typeof validatorAddPayloadVersionEnum]
+
 /**
  * @description Add validator payload
  */
@@ -16,8 +32,21 @@ export type ValidatorAdd = (TxPayloadDtoV1 & {
    */
   address?: string
   /**
+   * @type string | undefined
+   */
+  miningLimitMode?: ValidatorAddMiningLimitModeEnumKey
+  /**
+   * @type integer | undefined, int64
+   */
+  maxMiningShareBps?: number
+  /**
    * @description Payload type discriminator
    * @type string
    */
   payloadType: string
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: ValidatorAddPayloadVersionEnumKey
 }

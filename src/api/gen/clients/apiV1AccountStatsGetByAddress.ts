@@ -15,6 +15,7 @@ import type {
   ApiV1AccountStatsGetByAddress500,
 } from '../types/ApiV1AccountStatsGetByAddress.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -34,7 +35,7 @@ function getApiV1AccountStatsGetByAddressUrl(
  */
 export async function apiV1AccountStatsGetByAddress(
   address: ApiV1AccountStatsGetByAddressPathParams['address'],
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

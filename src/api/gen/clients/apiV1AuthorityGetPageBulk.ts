@@ -15,6 +15,7 @@ import type {
   ApiV1AuthorityGetPageBulk500,
 } from '../types/ApiV1AuthorityGetPageBulk.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -31,9 +32,9 @@ function getApiV1AuthorityGetPageBulkUrl() {
  * {@link /api/explorer/v1/authority/page/bulk}
  */
 export async function apiV1AuthorityGetPageBulk(
-  data?: ApiV1AuthorityGetPageBulkMutationRequest,
+  data: ApiV1AuthorityGetPageBulkMutationRequest,
   config: Partial<RequestConfig<ApiV1AuthorityGetPageBulkMutationRequest>> & {
-    client?: typeof fetch
+    client?: Client
   } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config

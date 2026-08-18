@@ -13,6 +13,7 @@ import type { TokenCreate } from './TokenCreate.ts'
 import type { TokenMint } from './TokenMint.ts'
 import type { TokenUpdate } from './TokenUpdate.ts'
 import type { ValidatorAdd } from './ValidatorAdd.ts'
+import type { ValidatorMiningPolicySet } from './ValidatorMiningPolicySet.ts'
 import type { ValidatorRemove } from './ValidatorRemove.ts'
 import type { Vote } from './Vote.ts'
 
@@ -64,6 +65,7 @@ export const memTransferDtoV1PayloadTypeEnum = {
   BIP_VOTE: 'BIP_VOTE',
   BIP_VALIDATOR_ADD: 'BIP_VALIDATOR_ADD',
   BIP_VALIDATOR_REMOVE: 'BIP_VALIDATOR_REMOVE',
+  BIP_VALIDATOR_MINING_POLICY_SET: 'BIP_VALIDATOR_MINING_POLICY_SET',
 } as const
 
 export type MemTransferDtoV1PayloadTypeEnumKey =
@@ -153,6 +155,7 @@ export type MemTransferDtoV1 = {
     | TokenMint
     | TokenUpdate
     | ValidatorAdd
+    | ValidatorMiningPolicySet
     | ValidatorRemove
     | Vote
 }

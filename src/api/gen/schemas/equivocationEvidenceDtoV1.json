@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "height": { "type": "integer", "format": "int64" },
+    "identity": { "type": "string" },
+    "signedHeaders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "blockHash": { "type": "string" },
+          "signature": { "type": "string" },
+          "canonicalSignedHeader": { "type": "string" }
+        },
+        "x-readme-ref-name": "SignedHeaderDtoV1"
+      }
+    },
+    "firstSeenAt": { "type": "string", "format": "date-time" },
+    "lastSeenAt": { "type": "string", "format": "date-time" }
+  },
+  "x-readme-ref-name": "EquivocationEvidenceDtoV1"
+}

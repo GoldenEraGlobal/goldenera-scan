@@ -15,6 +15,7 @@ import type {
   ApiV1ValidatorGetPage500,
 } from '../types/ApiV1ValidatorGetPage.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -29,7 +30,7 @@ function getApiV1ValidatorGetPageUrl() {
  */
 export async function apiV1ValidatorGetPage(
   params: ApiV1ValidatorGetPageQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

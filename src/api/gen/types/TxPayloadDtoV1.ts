@@ -3,6 +3,14 @@
  * Do not edit manually.
  */
 
+export const txPayloadDtoV1PayloadVersionEnum = {
+  V1: 'V1',
+  V2: 'V2',
+} as const
+
+export type TxPayloadDtoV1PayloadVersionEnumKey =
+  (typeof txPayloadDtoV1PayloadVersionEnum)[keyof typeof txPayloadDtoV1PayloadVersionEnum]
+
 export const txPayloadDtoV1PayloadTypeEnum = {
   BIP_ADDRESS_ALIAS_ADD: 'BIP_ADDRESS_ALIAS_ADD',
   BIP_ADDRESS_ALIAS_REMOVE: 'BIP_ADDRESS_ALIAS_REMOVE',
@@ -10,6 +18,7 @@ export const txPayloadDtoV1PayloadTypeEnum = {
   BIP_AUTHORITY_REMOVE: 'BIP_AUTHORITY_REMOVE',
   BIP_VALIDATOR_ADD: 'BIP_VALIDATOR_ADD',
   BIP_VALIDATOR_REMOVE: 'BIP_VALIDATOR_REMOVE',
+  BIP_VALIDATOR_MINING_POLICY_SET: 'BIP_VALIDATOR_MINING_POLICY_SET',
   BIP_NETWORK_PARAMS_SET: 'BIP_NETWORK_PARAMS_SET',
   BIP_TOKEN_BURN: 'BIP_TOKEN_BURN',
   BIP_TOKEN_CREATE: 'BIP_TOKEN_CREATE',
@@ -25,6 +34,11 @@ export type TxPayloadDtoV1PayloadTypeEnumKey =
  * @description Transaction payload
  */
 export type TxPayloadDtoV1 = {
+  /**
+   * @description Version of the concrete payload schema
+   * @type string
+   */
+  payloadVersion: TxPayloadDtoV1PayloadVersionEnumKey
   /**
    * @description Payload type discriminator
    * @type string

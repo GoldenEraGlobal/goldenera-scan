@@ -26,6 +26,7 @@ export const apiV1BipStateGetPageQueryParamsTypeEnum = {
   NETWORK_PARAMS_SET: 'NETWORK_PARAMS_SET',
   VALIDATOR_ADD: 'VALIDATOR_ADD',
   VALIDATOR_REMOVE: 'VALIDATOR_REMOVE',
+  VALIDATOR_MINING_POLICY_SET: 'VALIDATOR_MINING_POLICY_SET',
 } as const
 
 export type ApiV1BipStateGetPageQueryParamsTypeEnumKey =

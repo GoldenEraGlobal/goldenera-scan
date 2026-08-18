@@ -6,11 +6,39 @@
       "items": {
         "type": "object",
         "properties": {
-          "version": { "type": "string", "enum": ["V1"] },
+          "version": { "type": "string", "enum": ["V1", "V2"] },
           "address": { "type": "string" },
           "originTxHash": { "type": "string" },
           "createdAtBlockHeight": { "type": "integer", "format": "int64" },
-          "createdAtTimestamp": { "type": "string", "format": "date-time" }
+          "createdAtTimestamp": { "type": "string", "format": "date-time" },
+          "miningLimitMode": {
+            "type": "string",
+            "enum": ["LIMITED", "UNLIMITED"]
+          },
+          "miningPolicySource": {
+            "type": "string",
+            "enum": ["LEGACY_DEFAULT", "EXPLICIT"]
+          },
+          "maxMiningShareBps": { "type": "integer", "format": "int64" },
+          "maxBlocksInCurrentWindow": { "type": "integer", "format": "int64" },
+          "blocksMinedInCurrentWindow": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainingBlocksInCurrentWindow": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "miningEligible": { "type": "boolean" },
+          "policyUpdatedByTxHash": { "type": "string" },
+          "policyUpdatedAtBlockHeight": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "policyUpdatedAtTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
         },
         "x-readme-ref-name": "ValidatorDtoV1"
       }

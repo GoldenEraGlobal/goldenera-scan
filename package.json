@@ -13,6 +13,7 @@
     "format": "prettier",
     "check": "prettier --write . && eslint --fix",
     "gen:api": "kubb generate",
+    "update:api": "bash scripts/update-openapi.sh",
     "machine-translate": "inlang machine translate --project project.inlang"
   },
   "dependencies": {

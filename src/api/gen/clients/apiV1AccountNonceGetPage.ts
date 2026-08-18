@@ -15,6 +15,7 @@ import type {
   ApiV1AccountNonceGetPage500,
 } from '../types/ApiV1AccountNonceGetPage.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -32,7 +33,7 @@ function getApiV1AccountNonceGetPageUrl() {
  */
 export async function apiV1AccountNonceGetPage(
   params: ApiV1AccountNonceGetPageQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 

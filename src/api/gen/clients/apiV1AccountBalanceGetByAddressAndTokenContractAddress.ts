@@ -16,6 +16,7 @@ import type {
   ApiV1AccountBalanceGetByAddressAndTokenContractAddress500,
 } from '../types/ApiV1AccountBalanceGetByAddressAndTokenContractAddress.ts'
 import type {
+  Client,
   RequestConfig,
   ResponseErrorConfig,
 } from '@kubb/plugin-client/clients/axios'
@@ -36,7 +37,7 @@ function getApiV1AccountBalanceGetByAddressAndTokenContractAddressUrl(
 export async function apiV1AccountBalanceGetByAddressAndTokenContractAddress(
   address: ApiV1AccountBalanceGetByAddressAndTokenContractAddressPathParams['address'],
   params?: ApiV1AccountBalanceGetByAddressAndTokenContractAddressQueryParams,
-  config: Partial<RequestConfig> & { client?: typeof fetch } = {},
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config
 
