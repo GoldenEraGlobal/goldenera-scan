@@ -22,7 +22,7 @@ export const Route = createFileRoute('/_layout/account/$address')({
         nativeBalanceQueryOptions(params.address),
       ),
       context.queryClient.ensureQueryData(
-        miningRewardTranchesQueryOptions(params.address),
+        miningRewardTranchesQueryOptions(params.address, 0, 6),
       ),
     ])
     return {
@@ -79,8 +79,6 @@ function AccountDetailPage() {
       {/* Unified Overview */}
       <AccountOverview address={address} />
 
-      <MiningRewardVesting address={address} />
-
       {/* Token Holdings Table */}
       <TokenHoldingsTable address={address} />
 
@@ -91,6 +89,8 @@ function AccountDetailPage() {
         title={m.address_transactions()}
         pageSize={15}
       />
+
+      <MiningRewardVesting address={address} />
     </div>
   )
 }
