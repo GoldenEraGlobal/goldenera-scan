@@ -47,7 +47,7 @@ export function MiningRewardVesting({ address }: { address: string }) {
         accessorKey: 'amount',
         header: m.common_amount(),
         cell: ({ row }) => (
-          <div className="flex items-center gap-2 font-mono font-semibold whitespace-nowrap">
+          <div className="flex items-center gap-2 whitespace-nowrap font-mono text-xs font-semibold">
             <Coins className="size-4 text-primary" />
             {formatWei(row.original.amount)}
           </div>
@@ -57,7 +57,7 @@ export function MiningRewardVesting({ address }: { address: string }) {
         accessorKey: 'blockHeight',
         header: m.vesting_mined_at(),
         cell: ({ row }) => (
-          <div className="space-y-1">
+          <div className="space-y-1 text-xs">
             <div className="flex items-center gap-2">
               <span className="font-mono">
                 #{formatNum(row.original.blockHeight)}
@@ -89,7 +89,7 @@ export function MiningRewardVesting({ address }: { address: string }) {
                 : m.vesting_locked()
 
           return (
-            <div className="space-y-1">
+            <div className="space-y-1 text-xs">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono">
                   {row.original.unlockBlockHeight == null
