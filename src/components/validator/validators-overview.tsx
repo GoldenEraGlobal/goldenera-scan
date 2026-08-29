@@ -1,3 +1,10 @@
+import { useEffect, useMemo } from 'react'
+import { parseAsInteger, useQueryState } from 'nuqs'
+import {
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from '@tanstack/react-table'
 import {
   AlertTriangle,
   CheckCircle2,
@@ -7,6 +14,7 @@ import {
   ShieldCheck,
   ShieldX,
 } from 'lucide-react'
+import type { ColumnDef, PaginationState } from '@tanstack/react-table'
 import type { ValidatorDtoV1 } from '@/api/gen'
 import { useValidators } from '@/hooks/useValidators'
 import { presentMiningPolicy } from '@/lib/mining-economics'
@@ -24,7 +32,11 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { DataTablePagination } from '@/components/ui/data-table-pagination'
 import * as m from '@/paraglide/messages'
+
+const VALIDATORS_PAGE_SIZE = 10
+const validatorColumns: Array<ColumnDef<ValidatorDtoV1>> = []
 
 const value = (number: number | null | undefined, locale: string) =>
   number == null ? '—' : new Intl.NumberFormat(locale).format(number)
@@ -160,6 +172,14 @@ function ValidatorCard({
 }
 
 export function ValidatorsOverview() {
+  const [pageIndex, setPageIndex] = useQueryState(
+    'validator_page',
+    parseAsInteger.withDefault(0),
+  )
+  const pagination: PaginationState = useMemo(
+    () => ({ pageIndex, pageSize: VALIDATORS_PAGE_SIZE }),
+    [pageIndex],
+  )
   const {
     data,
     dataUpdatedAt,
@@ -174,6 +194,29 @@ export function ValidatorsOverview() {
   const queryFailed = isError || isRefetchError
   const snapshotCurrent = Boolean(data) && !queryFailed && !isStale
   const params = data?.networkParams
+  const validators = data?.validators ?? []
+  const table = useReactTable({
+    data: validators,
+    columns: validatorColumns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    state: { pagination },
+    onPaginationChange: (updater) => {
+      const next = typeof updater === 'function' ? updater(pagination) : updater
+      void setPageIndex(next.pageIndex)
+    },
+  })
+
+  useEffect(() => {
+    const lastPageIndex = Math.max(
+      0,
+      Math.ceil(validators.length / VALIDATORS_PAGE_SIZE) - 1,
+    )
+    if (pageIndex > lastPageIndex) {
+      void setPageIndex(lastPageIndex)
+    }
+  }, [pageIndex, setPageIndex, validators.length])
+
   return (
     <div className="space-y-6">
       {queryFailed || (data && isStale) ? (
@@ -291,16 +334,23 @@ export function ValidatorsOverview() {
           <Skeleton className="h-48" />
           <Skeleton className="h-48" />
         </div>
-      ) : data?.validators.length ? (
-        <div className="grid gap-4">
-          {data.validators.map((validator, index) => (
-            <ValidatorCard
-              key={validator.address ?? index}
-              validator={validator}
-              snapshotCurrent={snapshotCurrent}
-              locale={locale}
-            />
-          ))}
+      ) : validators.length ? (
+        <div className="space-y-4">
+          <div className="grid gap-4">
+            {table.getRowModel().rows.map((row) => (
+              <ValidatorCard
+                key={row.original.address ?? row.id}
+                validator={row.original}
+                snapshotCurrent={snapshotCurrent}
+                locale={locale}
+              />
+            ))}
+          </div>
+          {table.getPageCount() > 1 ? (
+            <div className="overflow-hidden rounded-xl border">
+              <DataTablePagination table={table} />
+            </div>
+          ) : null}
         </div>
       ) : (
         <Card>

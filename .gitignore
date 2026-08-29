@@ -15,3 +15,11 @@ todos.json
 
 .vscode
 .idea
+._*
+.agents
+.agents/*
+.agents/skills/*
+.zed
+CLAUDE.md
+AGENTS.md
+.codex
