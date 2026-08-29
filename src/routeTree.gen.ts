@@ -9,40 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as LayoutValidatorsRouteImport } from './routes/_layout.validators'
-import { Route as LayoutTransactionsRouteImport } from './routes/_layout.transactions'
-import { Route as LayoutMempoolRouteImport } from './routes/_layout.mempool'
-import { Route as LayoutBlocksRouteImport } from './routes/_layout.blocks'
+import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as LayoutAccountsRouteImport } from './routes/_layout.accounts'
-import { Route as LayoutTxHashRouteImport } from './routes/_layout.tx.$hash'
-import { Route as LayoutTokenAddressRouteImport } from './routes/_layout.token.$address'
-import { Route as LayoutBlockHashRouteImport } from './routes/_layout.block.$hash'
+import { Route as LayoutBlocksRouteImport } from './routes/_layout.blocks'
+import { Route as LayoutMempoolRouteImport } from './routes/_layout.mempool'
+import { Route as LayoutTransactionsRouteImport } from './routes/_layout.transactions'
+import { Route as LayoutValidatorsRouteImport } from './routes/_layout.validators'
 import { Route as LayoutAccountAddressRouteImport } from './routes/_layout.account.$address'
+import { Route as LayoutBlockHashRouteImport } from './routes/_layout.block.$hash'
+import { Route as LayoutTokenAddressRouteImport } from './routes/_layout.token.$address'
+import { Route as LayoutTxHashRouteImport } from './routes/_layout.tx.$hash'
 
-const LayoutRoute = LayoutRouteImport.update({
-  id: '/_layout',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LayoutValidatorsRoute = LayoutValidatorsRouteImport.update({
-  id: '/validators',
-  path: '/validators',
-  getParentRoute: () => LayoutRoute,
+const LayoutRoute = LayoutRouteImport.update({
+  id: '/_layout',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const LayoutTransactionsRoute = LayoutTransactionsRouteImport.update({
-  id: '/transactions',
-  path: '/transactions',
-  getParentRoute: () => LayoutRoute,
-} as any)
-const LayoutMempoolRoute = LayoutMempoolRouteImport.update({
-  id: '/mempool',
-  path: '/mempool',
+const LayoutAccountsRoute = LayoutAccountsRouteImport.update({
+  id: '/accounts',
+  path: '/accounts',
   getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutBlocksRoute = LayoutBlocksRouteImport.update({
@@ -50,19 +40,24 @@ const LayoutBlocksRoute = LayoutBlocksRouteImport.update({
   path: '/blocks',
   getParentRoute: () => LayoutRoute,
 } as any)
-const LayoutAccountsRoute = LayoutAccountsRouteImport.update({
-  id: '/accounts',
-  path: '/accounts',
+const LayoutMempoolRoute = LayoutMempoolRouteImport.update({
+  id: '/mempool',
+  path: '/mempool',
   getParentRoute: () => LayoutRoute,
 } as any)
-const LayoutTxHashRoute = LayoutTxHashRouteImport.update({
-  id: '/tx/$hash',
-  path: '/tx/$hash',
+const LayoutTransactionsRoute = LayoutTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
   getParentRoute: () => LayoutRoute,
 } as any)
-const LayoutTokenAddressRoute = LayoutTokenAddressRouteImport.update({
-  id: '/token/$address',
-  path: '/token/$address',
+const LayoutValidatorsRoute = LayoutValidatorsRouteImport.update({
+  id: '/validators',
+  path: '/validators',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutAccountAddressRoute = LayoutAccountAddressRouteImport.update({
+  id: '/account/$address',
+  path: '/account/$address',
   getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutBlockHashRoute = LayoutBlockHashRouteImport.update({
@@ -70,9 +65,14 @@ const LayoutBlockHashRoute = LayoutBlockHashRouteImport.update({
   path: '/block/$hash',
   getParentRoute: () => LayoutRoute,
 } as any)
-const LayoutAccountAddressRoute = LayoutAccountAddressRouteImport.update({
-  id: '/account/$address',
-  path: '/account/$address',
+const LayoutTokenAddressRoute = LayoutTokenAddressRouteImport.update({
+  id: '/token/$address',
+  path: '/token/$address',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutTxHashRoute = LayoutTxHashRouteImport.update({
+  id: '/tx/$hash',
+  path: '/tx/$hash',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -161,13 +161,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_layout': {
-      id: '/_layout'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof LayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -175,25 +168,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_layout/validators': {
-      id: '/_layout/validators'
-      path: '/validators'
-      fullPath: '/validators'
-      preLoaderRoute: typeof LayoutValidatorsRouteImport
-      parentRoute: typeof LayoutRoute
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof LayoutRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_layout/transactions': {
-      id: '/_layout/transactions'
-      path: '/transactions'
-      fullPath: '/transactions'
-      preLoaderRoute: typeof LayoutTransactionsRouteImport
-      parentRoute: typeof LayoutRoute
-    }
-    '/_layout/mempool': {
-      id: '/_layout/mempool'
-      path: '/mempool'
-      fullPath: '/mempool'
-      preLoaderRoute: typeof LayoutMempoolRouteImport
+    '/_layout/accounts': {
+      id: '/_layout/accounts'
+      path: '/accounts'
+      fullPath: '/accounts'
+      preLoaderRoute: typeof LayoutAccountsRouteImport
       parentRoute: typeof LayoutRoute
     }
     '/_layout/blocks': {
@@ -203,25 +189,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutBlocksRouteImport
       parentRoute: typeof LayoutRoute
     }
-    '/_layout/accounts': {
-      id: '/_layout/accounts'
-      path: '/accounts'
-      fullPath: '/accounts'
-      preLoaderRoute: typeof LayoutAccountsRouteImport
+    '/_layout/mempool': {
+      id: '/_layout/mempool'
+      path: '/mempool'
+      fullPath: '/mempool'
+      preLoaderRoute: typeof LayoutMempoolRouteImport
       parentRoute: typeof LayoutRoute
     }
-    '/_layout/tx/$hash': {
-      id: '/_layout/tx/$hash'
-      path: '/tx/$hash'
-      fullPath: '/tx/$hash'
-      preLoaderRoute: typeof LayoutTxHashRouteImport
+    '/_layout/transactions': {
+      id: '/_layout/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof LayoutTransactionsRouteImport
       parentRoute: typeof LayoutRoute
     }
-    '/_layout/token/$address': {
-      id: '/_layout/token/$address'
-      path: '/token/$address'
-      fullPath: '/token/$address'
-      preLoaderRoute: typeof LayoutTokenAddressRouteImport
+    '/_layout/validators': {
+      id: '/_layout/validators'
+      path: '/validators'
+      fullPath: '/validators'
+      preLoaderRoute: typeof LayoutValidatorsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/account/$address': {
+      id: '/_layout/account/$address'
+      path: '/account/$address'
+      fullPath: '/account/$address'
+      preLoaderRoute: typeof LayoutAccountAddressRouteImport
       parentRoute: typeof LayoutRoute
     }
     '/_layout/block/$hash': {
@@ -231,11 +224,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutBlockHashRouteImport
       parentRoute: typeof LayoutRoute
     }
-    '/_layout/account/$address': {
-      id: '/_layout/account/$address'
-      path: '/account/$address'
-      fullPath: '/account/$address'
-      preLoaderRoute: typeof LayoutAccountAddressRouteImport
+    '/_layout/token/$address': {
+      id: '/_layout/token/$address'
+      path: '/token/$address'
+      fullPath: '/token/$address'
+      preLoaderRoute: typeof LayoutTokenAddressRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/tx/$hash': {
+      id: '/_layout/tx/$hash'
+      path: '/tx/$hash'
+      fullPath: '/tx/$hash'
+      preLoaderRoute: typeof LayoutTxHashRouteImport
       parentRoute: typeof LayoutRoute
     }
   }
