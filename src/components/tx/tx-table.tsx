@@ -3,6 +3,7 @@ import { useQueryState, parseAsInteger, parseAsString, parseAsStringEnum } from 
 import { apiV1TxGetPageQueryParamsTypeEnum } from '@/api/gen/types/ApiV1TxGetPage'
 import { useTokens } from '@/hooks/useTokens'
 import { useTransactions } from '@/hooks/useTransactions'
+import { useHydrated } from '@/hooks/useHydrated'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { DataTable } from '@/components/ui/data-table'
@@ -81,6 +82,7 @@ export function TxTable({
     className,
     canRefresh = true,
 }: TxTableProps) {
+    const isHydrated = useHydrated()
     const [pageIndex, setPageIndex] = useQueryState(
         't_page',
         parseAsInteger.withDefault(0)
@@ -135,6 +137,9 @@ export function TxTable({
         isRefetching: transfersRefetching,
         isPlaceholderData,
     } = useTransactions(queryParams)
+    const controlsLoading = isHydrated && transfersLoading
+    const controlsRefetching = isHydrated && transfersRefetching
+    const tableLoading = isHydrated && (transfersLoading || isPlaceholderData)
 
     // Fetch tokens for formatting
     const { data: tokens } = useTokens()
@@ -266,7 +271,7 @@ export function TxTable({
                         {showFilterTabs && address && (
                             <div className="flex bg-muted rounded-lg p-1">
                                 <button
-                                    disabled={transfersLoading}
+                                    disabled={controlsLoading}
                                     onClick={() => handleFilterChange('all')}
                                     className={cn(
                                         'px-3 py-1.5 text-xs font-medium rounded-md transition-colors',
@@ -278,7 +283,7 @@ export function TxTable({
                                     {m.common_all()}
                                 </button>
                                 <button
-                                    disabled={transfersLoading}
+                                    disabled={controlsLoading}
                                     onClick={() => handleFilterChange('received')}
                                     className={cn(
                                         'px-3 py-1.5 text-xs font-medium rounded-md transition-colors flex items-center gap-1',
@@ -291,7 +296,7 @@ export function TxTable({
                                     {m.common_received()}
                                 </button>
                                 <button
-                                    disabled={transfersLoading}
+                                    disabled={controlsLoading}
                                     onClick={() => handleFilterChange('sent')}
                                     className={cn(
                                         'px-3 py-1.5 text-xs font-medium rounded-md transition-colors flex items-center gap-1',
@@ -308,7 +313,7 @@ export function TxTable({
                         {/* Type Filter Dropdown */}
                         <DropdownMenu>
                             <DropdownMenuTrigger render={<Button
-                                disabled={transfersLoading}
+                                disabled={controlsLoading}
                                 variant="outline"
                                 size="sm"
                                 className={cn('h-8', typeFilter && 'border-primary text-primary')}
@@ -358,10 +363,10 @@ export function TxTable({
                                 variant="outline"
                                 size="sm"
                                 onClick={() => refetchTransfers()}
-                                disabled={transfersRefetching}
+                                disabled={controlsRefetching}
                                 className="h-8"
                             >
-                                <RefreshCw className={cn('h-3.5 w-3.5', transfersRefetching && 'animate-spin')} />
+                                <RefreshCw className={cn('h-3.5 w-3.5', controlsRefetching && 'animate-spin')} />
                             </Button>
                         )}
                     </div>
@@ -371,7 +376,7 @@ export function TxTable({
             <CardContent className="p-0">
                 <DataTable
                     table={table}
-                    isLoading={transfersLoading || isPlaceholderData}
+                    isLoading={tableLoading}
                     rowCount={pageSize}
                     emptyIcon={<FileText className="h-8 w-8 text-muted-foreground/50" />}
                     emptyTitle={m.table_no_transactions()}

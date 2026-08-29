@@ -39,7 +39,7 @@ const VALIDATORS_PAGE_SIZE = 10
 const validatorColumns: Array<ColumnDef<ValidatorDtoV1>> = []
 
 const value = (number: number | null | undefined, locale: string) =>
-  number == null ? '—' : new Intl.NumberFormat(locale).format(number)
+  number == null ? '-' : new Intl.NumberFormat(locale).format(number)
 
 function ValidatorCard({
   validator,
@@ -93,7 +93,7 @@ function ValidatorCard({
           <p className="font-semibold">
             {policy.mode === 'UNLIMITED'
               ? m.validators_not_limited()
-              : (policy.sharePercent ?? '—')}
+              : (policy.sharePercent ?? '-')}
           </p>
         </div>
         <div>
@@ -106,7 +106,7 @@ function ValidatorCard({
                   mined: value(policy.mined, locale),
                   quota: value(policy.quota, locale),
                 })
-              : '—'}
+              : '-'}
           </p>
         </div>
         <div>
@@ -151,20 +151,24 @@ function ValidatorCard({
               className="text-xs"
             />
           ) : (
-            <span>—</span>
+            <span>-</span>
           )}
         </div>
         <div>
           <p className="text-xs text-muted-foreground">
             {m.validators_policy_height()}
           </p>
-          <p>#{value(validator.policyUpdatedAtBlockHeight, locale)}</p>
+          <p># {value(validator.policyUpdatedAtBlockHeight, locale)}</p>
         </div>
         <div>
           <p className="text-xs text-muted-foreground">
             {m.validators_policy_time()}
           </p>
-          <DateTime timestamp={validator.policyUpdatedAtTimestamp} />
+          {validator.policyUpdatedAtTimestamp ? (
+            <DateTime timestamp={validator.policyUpdatedAtTimestamp} />
+          ) : (
+            <span>-</span>
+          )}
         </div>
       </CardContent>
     </Card>
@@ -237,29 +241,35 @@ export function ValidatorsOverview() {
       <Card>
         <CardHeader className="border-b">
           <div className="flex items-start justify-between gap-4">
-            <div>
+            <div className="min-w-0">
               <CardTitle className="flex items-center gap-2">
                 <Gauge className="size-4 text-primary" />
                 {m.validators_network_title()}
               </CardTitle>
-              <CardDescription>{m.validators_canonical_note()}</CardDescription>
-              {data ? (
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {m.validators_snapshot_head({
-                    height: value(data.headHeight, locale),
-                    hash: `${data.headHash.slice(0, 10)}…${data.headHash.slice(-8)}`,
-                  })}
-                </p>
-              ) : null}
-              {dataUpdatedAt > 0 ? (
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {m.validators_last_updated({
-                    time: new Intl.DateTimeFormat(locale, {
-                      dateStyle: 'medium',
-                      timeStyle: 'medium',
-                    }).format(new Date(dataUpdatedAt)),
-                  })}
-                </p>
+              <CardDescription className="mt-2 max-w-2xl leading-relaxed">
+                {m.validators_canonical_note()}
+              </CardDescription>
+              {data || dataUpdatedAt > 0 ? (
+                <div className="mt-4 flex flex-col gap-1.5 border-l-2 border-primary/20 pl-3 text-xs text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-5">
+                  {data ? (
+                    <p>
+                      {m.validators_snapshot_head({
+                        height: value(data.headHeight, locale),
+                        hash: `${data.headHash.slice(0, 10)}…${data.headHash.slice(-8)}`,
+                      })}
+                    </p>
+                  ) : null}
+                  {dataUpdatedAt > 0 ? (
+                    <p>
+                      {m.validators_last_updated({
+                        time: new Intl.DateTimeFormat(locale, {
+                          dateStyle: 'medium',
+                          timeStyle: 'medium',
+                        }).format(new Date(dataUpdatedAt)),
+                      })}
+                    </p>
+                  ) : null}
+                </div>
               ) : null}
             </div>
             <Button

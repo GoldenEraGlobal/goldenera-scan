@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { DataTable } from '@/components/ui/data-table'
 import { DataTablePagination } from '@/components/ui/data-table-pagination'
 import { useGlobalStats } from '@/hooks/useGlobalStats'
+import { useHydrated } from '@/hooks/useHydrated'
 import { useMiningRewardTranches } from '@/hooks/useMiningRewardTranches'
 import { useTokenUtil } from '@/hooks/useTokenUtil'
 import { presentRewardVesting } from '@/lib/reward-vesting'
@@ -21,6 +22,7 @@ import * as m from '@/paraglide/messages'
 const PAGE_SIZE = 6
 
 export function MiningRewardVesting({ address }: { address: string }) {
+  const isHydrated = useHydrated()
   const [pageIndex, setPageIndex] = useQueryState(
     'vesting_page',
     parseAsInteger.withDefault(0),
@@ -32,7 +34,10 @@ export function MiningRewardVesting({ address }: { address: string }) {
   const rewards = useMiningRewardTranches(address, pageIndex, PAGE_SIZE)
   const globalStats = useGlobalStats({ autoRefetch: true })
   const { formatWei } = useTokenUtil()
-  const isRefreshing = rewards.isRefetching || globalStats.isRefetching
+  const isRefreshing =
+    isHydrated && (rewards.isRefetching || globalStats.isRefetching)
+  const isLoading =
+    isHydrated && (rewards.isLoading || rewards.isPlaceholderData)
 
   useEffect(() => {
     const totalPages = rewards.data?.totalPages
@@ -167,7 +172,7 @@ export function MiningRewardVesting({ address }: { address: string }) {
       <CardContent className="p-0">
         <DataTable
           table={table}
-          isLoading={rewards.isLoading || rewards.isPlaceholderData}
+          isLoading={isLoading}
           rowCount={PAGE_SIZE}
           emptyIcon={<Coins className="size-8 text-muted-foreground/50" />}
           emptyTitle={m.vesting_no_rewards()}
